@@ -6,6 +6,7 @@ import {
   Activity, 
   Terminal 
 } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const skillCategories = [
   {
@@ -47,11 +48,17 @@ const skillCategories = [
 ];
 
 export function SkillsSection() {
+  const { ref: sectionRef, isVisible } = useScrollAnimation<HTMLElement>();
+
   return (
-    <section id="skills" className="section-padding">
+    <section id="skills" ref={sectionRef} className="section-padding">
       <div className="container-width">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div 
+          className={`text-center mb-16 transition-all duration-700 ease-out ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
           <span className="text-accent font-medium text-sm uppercase tracking-wider">
             Technical Skills
           </span>
@@ -69,10 +76,13 @@ export function SkillsSection() {
           {skillCategories.map((category, index) => (
             <div
               key={index}
-              className="bg-card rounded-2xl p-6 border border-border hover:border-accent/30 transition-all duration-300 hover:shadow-lg group"
+              className={`bg-card rounded-2xl p-6 border border-border hover:border-accent/30 transition-all duration-500 ease-out hover:shadow-lg hover:-translate-y-1 group ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
+              style={{ transitionDelay: `${150 + index * 100}ms` }}
             >
               <div className="flex items-center gap-3 mb-5">
-                <div className={`p-2.5 rounded-lg bg-secondary ${category.color}`}>
+                <div className={`p-2.5 rounded-lg bg-secondary ${category.color} transition-transform duration-300 group-hover:scale-110`}>
                   <category.icon className="w-5 h-5" />
                 </div>
                 <h3 className="font-semibold text-foreground">

@@ -1,4 +1,5 @@
 import { Award, Cloud, Container, FileCode } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const certifications = [
   {
@@ -40,11 +41,17 @@ const certifications = [
 ];
 
 export function CertificationsSection() {
+  const { ref: sectionRef, isVisible } = useScrollAnimation<HTMLElement>();
+
   return (
-    <section id="certifications" className="section-padding bg-card">
+    <section id="certifications" ref={sectionRef} className="section-padding bg-card">
       <div className="container-width">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div 
+          className={`text-center mb-16 transition-all duration-700 ease-out ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
           <span className="text-accent font-medium text-sm uppercase tracking-wider">
             Credentials
           </span>
@@ -60,8 +67,14 @@ export function CertificationsSection() {
         {/* Certifications Grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
           {certifications.map((cert, index) => (
-            <div key={index} className="cert-badge">
-              <div className={`p-2.5 rounded-lg ${cert.color}`}>
+            <div 
+              key={index} 
+              className={`cert-badge ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
+              style={{ transitionDelay: `${150 + index * 75}ms` }}
+            >
+              <div className={`p-2.5 rounded-lg ${cert.color} transition-transform duration-300 group-hover:scale-110`}>
                 <cert.icon className="w-5 h-5" />
               </div>
               <div>

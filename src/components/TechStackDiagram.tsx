@@ -7,6 +7,7 @@ import {
   Server,
   ArrowRight
 } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const stackLayers = [
   {
@@ -61,11 +62,17 @@ const stackLayers = [
 ];
 
 export function TechStackDiagram() {
+  const { ref: sectionRef, isVisible } = useScrollAnimation<HTMLElement>();
+
   return (
-    <section className="section-padding bg-card">
+    <section ref={sectionRef} className="section-padding bg-card">
       <div className="container-width">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div 
+          className={`text-center mb-16 transition-all duration-700 ease-out ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
           <span className="text-accent font-medium text-sm uppercase tracking-wider">
             Technology Overview
           </span>
@@ -83,10 +90,13 @@ export function TechStackDiagram() {
             {stackLayers.map((layer, index) => (
               <div
                 key={index}
-                className={`flex items-center gap-4 p-5 rounded-xl border-2 ${layer.color} transition-all duration-300 hover:shadow-md`}
+                className={`flex items-center gap-4 p-5 rounded-xl border-2 ${layer.color} transition-all duration-500 ease-out hover:shadow-md hover:scale-[1.01] ${
+                  isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
+                }`}
+                style={{ transitionDelay: `${150 + index * 100}ms` }}
               >
                 {/* Icon */}
-                <div className={`p-3 rounded-lg bg-background/80 ${layer.iconColor}`}>
+                <div className={`p-3 rounded-lg bg-background/80 ${layer.iconColor} transition-transform duration-300 hover:scale-110`}>
                   <layer.icon className="w-6 h-6" />
                 </div>
 
@@ -99,7 +109,7 @@ export function TechStackDiagram() {
                     {layer.tools.map((tool, toolIndex) => (
                       <span
                         key={toolIndex}
-                        className="text-xs font-medium px-2.5 py-1 rounded-full bg-background text-foreground"
+                        className="text-xs font-medium px-2.5 py-1 rounded-full bg-background text-foreground transition-all duration-300 hover:bg-primary hover:text-primary-foreground"
                       >
                         {tool}
                       </span>
@@ -108,7 +118,7 @@ export function TechStackDiagram() {
                 </div>
 
                 {/* Layer Number */}
-                <div className="hidden sm:flex items-center justify-center w-10 h-10 rounded-full bg-background text-muted-foreground font-semibold text-sm">
+                <div className="hidden sm:flex items-center justify-center w-10 h-10 rounded-full bg-background text-muted-foreground font-semibold text-sm transition-all duration-300 hover:bg-primary hover:text-primary-foreground">
                   {index + 1}
                 </div>
               </div>
@@ -116,7 +126,11 @@ export function TechStackDiagram() {
           </div>
 
           {/* Flow Indicator */}
-          <div className="mt-8 text-center">
+          <div 
+            className={`mt-8 text-center transition-all duration-700 ease-out delay-700 ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            }`}
+          >
             <p className="text-sm text-muted-foreground">
               Code → Build → Test → Deploy → Monitor → Secure → Repeat
             </p>
