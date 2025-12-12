@@ -126,11 +126,11 @@
 
 @layer components {
   .skill-badge {
-    @apply inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-secondary text-secondary-foreground text-sm font-medium transition-all duration-200 hover:bg-primary hover:text-primary-foreground;
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-secondary text-secondary-foreground text-sm font-medium transition-all duration-300 ease-out hover:bg-primary hover:text-primary-foreground hover:scale-105;
   }
 
   .project-card {
-    @apply bg-card rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1;
+    @apply bg-card rounded-2xl p-6 transition-all duration-500 ease-out hover:-translate-y-2;
     box-shadow: var(--shadow-md);
   }
 
@@ -139,14 +139,42 @@
   }
 
   .cert-badge {
-    @apply flex items-center gap-3 px-5 py-3 rounded-xl bg-card border border-border transition-all duration-200 hover:border-primary/30 hover:shadow-md;
+    @apply flex items-center gap-3 px-5 py-3 rounded-xl bg-card border border-border transition-all duration-300 ease-out hover:border-primary/30 hover:shadow-md hover:scale-[1.02];
   }
 
   .nav-link {
-    @apply text-muted-foreground hover:text-foreground transition-colors duration-200 text-sm font-medium;
+    @apply text-muted-foreground hover:text-foreground transition-all duration-300 ease-out text-sm font-medium;
   }
 
   .nav-link-active {
     @apply text-primary;
+  }
+
+  /* Smooth scroll-triggered animation classes */
+  .animate-on-scroll {
+    @apply opacity-0 translate-y-8 transition-all duration-700 ease-out;
+  }
+
+  .animate-on-scroll.visible {
+    @apply opacity-100 translate-y-0;
+  }
+
+  /* Stagger delay utilities */
+  .delay-100 { animation-delay: 100ms; }
+  .delay-200 { animation-delay: 200ms; }
+  .delay-300 { animation-delay: 300ms; }
+  .delay-400 { animation-delay: 400ms; }
+  .delay-500 { animation-delay: 500ms; }
+  .delay-600 { animation-delay: 600ms; }
+
+  /* Headshot styling */
+  .headshot-container {
+    @apply relative rounded-2xl overflow-hidden;
+    box-shadow: var(--shadow-xl);
+  }
+
+  .headshot-container::after {
+    content: '';
+    @apply absolute inset-0 rounded-2xl ring-1 ring-inset ring-foreground/5;
   }
 }

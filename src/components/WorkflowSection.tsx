@@ -6,6 +6,7 @@ import {
   Zap, 
   CheckCircle 
 } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const principles = [
   {
@@ -41,11 +42,17 @@ const principles = [
 ];
 
 export function WorkflowSection() {
+  const { ref: sectionRef, isVisible } = useScrollAnimation<HTMLElement>();
+
   return (
-    <section className="section-padding">
+    <section ref={sectionRef} className="section-padding">
       <div className="container-width">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div 
+          className={`text-center mb-16 transition-all duration-700 ease-out ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
           <span className="text-accent font-medium text-sm uppercase tracking-wider">
             Philosophy
           </span>
@@ -62,9 +69,12 @@ export function WorkflowSection() {
           {principles.map((principle, index) => (
             <div
               key={index}
-              className="flex items-start gap-4 p-6 rounded-xl bg-card border border-border hover:border-accent/30 transition-all duration-300 hover:shadow-md"
+              className={`flex items-start gap-4 p-6 rounded-xl bg-card border border-border hover:border-accent/30 transition-all duration-500 ease-out hover:shadow-md hover:-translate-y-1 group ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
+              style={{ transitionDelay: `${150 + index * 100}ms` }}
             >
-              <div className="p-2.5 rounded-lg bg-accent/10 text-accent flex-shrink-0">
+              <div className="p-2.5 rounded-lg bg-accent/10 text-accent flex-shrink-0 transition-transform duration-300 group-hover:scale-110">
                 <principle.icon className="w-5 h-5" />
               </div>
               <div>

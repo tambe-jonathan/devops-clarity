@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 export function ContactSection() {
   const { toast } = useToast();
@@ -13,6 +14,7 @@ export function ContactSection() {
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { ref: sectionRef, isVisible } = useScrollAnimation<HTMLElement>();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -40,10 +42,14 @@ export function ContactSection() {
   };
 
   return (
-    <section id="contact" className="section-padding">
+    <section id="contact" ref={sectionRef} className="section-padding">
       <div className="container-width">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div 
+          className={`text-center mb-16 transition-all duration-700 ease-out ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
           <span className="text-accent font-medium text-sm uppercase tracking-wider">
             Get in Touch
           </span>
@@ -58,7 +64,11 @@ export function ContactSection() {
 
         <div className="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
           {/* Contact Info */}
-          <div>
+          <div 
+            className={`transition-all duration-700 ease-out delay-200 ${
+              isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
+            }`}
+          >
             <h3 className="text-xl font-semibold text-foreground mb-6">
               Contact Information
             </h3>
@@ -66,9 +76,9 @@ export function ContactSection() {
             <div className="space-y-4 mb-8">
               <a
                 href="mailto:hello@example.com"
-                className="flex items-center gap-4 p-4 rounded-xl bg-card border border-border hover:border-accent/30 transition-all duration-200"
+                className="flex items-center gap-4 p-4 rounded-xl bg-card border border-border hover:border-accent/30 transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 group"
               >
-                <div className="p-2.5 rounded-lg bg-accent/10 text-accent">
+                <div className="p-2.5 rounded-lg bg-accent/10 text-accent transition-transform duration-300 group-hover:scale-110">
                   <Mail className="w-5 h-5" />
                 </div>
                 <div>
@@ -81,9 +91,9 @@ export function ContactSection() {
                 href="https://github.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-4 p-4 rounded-xl bg-card border border-border hover:border-accent/30 transition-all duration-200"
+                className="flex items-center gap-4 p-4 rounded-xl bg-card border border-border hover:border-accent/30 transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 group"
               >
-                <div className="p-2.5 rounded-lg bg-accent/10 text-accent">
+                <div className="p-2.5 rounded-lg bg-accent/10 text-accent transition-transform duration-300 group-hover:scale-110">
                   <Github className="w-5 h-5" />
                 </div>
                 <div>
@@ -96,9 +106,9 @@ export function ContactSection() {
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-4 p-4 rounded-xl bg-card border border-border hover:border-accent/30 transition-all duration-200"
+                className="flex items-center gap-4 p-4 rounded-xl bg-card border border-border hover:border-accent/30 transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 group"
               >
-                <div className="p-2.5 rounded-lg bg-accent/10 text-accent">
+                <div className="p-2.5 rounded-lg bg-accent/10 text-accent transition-transform duration-300 group-hover:scale-110">
                   <Linkedin className="w-5 h-5" />
                 </div>
                 <div>
@@ -120,7 +130,11 @@ export function ContactSection() {
           </div>
 
           {/* Contact Form */}
-          <div className="bg-card rounded-2xl p-8 border border-border">
+          <div 
+            className={`bg-card rounded-2xl p-8 border border-border transition-all duration-700 ease-out delay-300 ${
+              isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
+            }`}
+          >
             <h3 className="text-xl font-semibold text-foreground mb-6">
               Send a Message
             </h3>
@@ -141,7 +155,7 @@ export function ContactSection() {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="h-12"
+                  className="h-12 transition-all duration-300 focus:scale-[1.01]"
                 />
               </div>
 
@@ -160,7 +174,7 @@ export function ContactSection() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="h-12"
+                  className="h-12 transition-all duration-300 focus:scale-[1.01]"
                 />
               </div>
 
@@ -179,6 +193,7 @@ export function ContactSection() {
                   onChange={handleChange}
                   required
                   rows={5}
+                  className="transition-all duration-300 focus:scale-[1.01]"
                 />
               </div>
 
@@ -186,7 +201,7 @@ export function ContactSection() {
                 type="submit"
                 variant="hero"
                 size="lg"
-                className="w-full"
+                className="w-full transition-all duration-300 hover:scale-[1.02]"
                 disabled={isSubmitting}
               >
                 {isSubmitting ? (

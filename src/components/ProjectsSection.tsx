@@ -1,5 +1,6 @@
 import { Github, Youtube, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const projects = [
   {
@@ -36,11 +37,17 @@ const projects = [
 ];
 
 export function ProjectsSection() {
+  const { ref: sectionRef, isVisible } = useScrollAnimation<HTMLElement>();
+
   return (
-    <section id="projects" className="section-padding bg-card">
+    <section id="projects" ref={sectionRef} className="section-padding bg-card">
       <div className="container-width">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div 
+          className={`text-center mb-16 transition-all duration-700 ease-out ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
           <span className="text-accent font-medium text-sm uppercase tracking-wider">
             Featured Work
           </span>
@@ -56,13 +63,19 @@ export function ProjectsSection() {
         {/* Projects Grid */}
         <div className="grid md:grid-cols-2 gap-8">
           {projects.map((project, index) => (
-            <article key={index} className="project-card bg-background group">
+            <article 
+              key={index} 
+              className={`project-card bg-background group ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
+              style={{ transitionDelay: `${200 + index * 150}ms` }}
+            >
               {/* Project Header */}
               <div className="flex items-start justify-between mb-4">
-                <h3 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors pr-4">
+                <h3 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors duration-300 pr-4">
                   {project.title}
                 </h3>
-                <ExternalLink className="w-5 h-5 text-muted-foreground flex-shrink-0" />
+                <ExternalLink className="w-5 h-5 text-muted-foreground flex-shrink-0 transition-transform duration-300 group-hover:scale-110" />
               </div>
 
               {/* Description */}
@@ -75,7 +88,7 @@ export function ProjectsSection() {
                 {project.tools.map((tool, toolIndex) => (
                   <span
                     key={toolIndex}
-                    className="px-3 py-1 text-xs font-medium rounded-full bg-secondary text-secondary-foreground"
+                    className="px-3 py-1 text-xs font-medium rounded-full bg-secondary text-secondary-foreground transition-all duration-300 hover:bg-primary hover:text-primary-foreground"
                   >
                     {tool}
                   </span>
@@ -84,7 +97,7 @@ export function ProjectsSection() {
 
               {/* Links */}
               <div className="flex items-center gap-3 pt-4 border-t border-border">
-                <Button variant="outline" size="sm" asChild>
+                <Button variant="outline" size="sm" asChild className="transition-all duration-300 hover:scale-105">
                   <a
                     href={project.github}
                     target="_blank"
@@ -95,7 +108,7 @@ export function ProjectsSection() {
                   </a>
                 </Button>
                 {project.youtube && (
-                  <Button variant="ghost" size="sm" asChild>
+                  <Button variant="ghost" size="sm" asChild className="transition-all duration-300 hover:scale-105">
                     <a
                       href={project.youtube}
                       target="_blank"
