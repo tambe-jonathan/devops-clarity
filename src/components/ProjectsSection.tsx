@@ -1,6 +1,7 @@
-import { Github, Youtube, ExternalLink } from "lucide-react";
+import { Github, Youtube, ExternalLink, Palette } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { ExternalLinkWithReturn } from "@/components/ExternalLinkWithReturn";
 
 const projects = [
   {
@@ -96,28 +97,26 @@ export function ProjectsSection() {
               </div>
 
               {/* Links */}
-              <div className="flex items-center gap-3 pt-4 border-t border-border">
-                <Button variant="outline" size="sm" asChild className="transition-all duration-300 hover:scale-105">
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
+              <div className="flex items-center gap-3 pt-4 border-t border-border flex-wrap">
+                <ExternalLinkWithReturn href={project.github}>
+                  <Button variant="outline" size="sm" className="transition-all duration-300 hover:scale-105">
                     <Github className="w-4 h-4 mr-2" />
                     View Code
-                  </a>
-                </Button>
+                  </Button>
+                </ExternalLinkWithReturn>
+                <ExternalLinkWithReturn href={project.github}>
+                  <Button variant="ghost" size="sm" className="transition-all duration-300 hover:scale-105">
+                    <Palette className="w-4 h-4 mr-2" />
+                    Design
+                  </Button>
+                </ExternalLinkWithReturn>
                 {project.youtube && (
-                  <Button variant="ghost" size="sm" asChild className="transition-all duration-300 hover:scale-105">
-                    <a
-                      href={project.youtube}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
+                  <ExternalLinkWithReturn href={project.youtube}>
+                    <Button variant="ghost" size="sm" className="transition-all duration-300 hover:scale-105">
                       <Youtube className="w-4 h-4 mr-2" />
                       Watch Demo
-                    </a>
-                  </Button>
+                    </Button>
+                  </ExternalLinkWithReturn>
                 )}
               </div>
             </article>

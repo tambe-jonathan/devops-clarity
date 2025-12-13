@@ -9,6 +9,7 @@ import { WorkflowSection } from "@/components/WorkflowSection";
 import { TechStackDiagram } from "@/components/TechStackDiagram";
 import { ContactSection } from "@/components/ContactSection";
 import { Footer } from "@/components/Footer";
+import { ReturnToPortfolioButton } from "@/components/ReturnToPortfolioButton";
 
 const Index = () => {
   return (
@@ -26,6 +27,7 @@ const Index = () => {
         <ContactSection />
       </main>
       <Footer />
+      <ReturnToPortfolioButton />
     </div>
   );
 };

@@ -56,8 +56,8 @@ export function Navigation() {
       <nav className="container-width">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <a href="#" className="text-xl font-semibold text-foreground">
-            DevOps<span className="text-accent">.</span>
+          <a href="#" className="text-xl font-semibold text-foreground tracking-tight">
+            Jonathan<span className="text-primary">.dev</span>
           </a>
 
           {/* Desktop Navigation */}

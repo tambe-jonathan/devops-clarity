@@ -171,6 +171,22 @@
   .delay-500 { animation-delay: 500ms; }
   .delay-600 { animation-delay: 600ms; }
 
+  /* Hero entrance animation - subtle fade + slide up */
+  .hero-animate {
+    animation: hero-entrance 0.4s ease-out forwards;
+  }
+
+  @keyframes hero-entrance {
+    0% {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   /* Headshot styling */
   .headshot-container {
     @apply relative rounded-2xl overflow-hidden;
