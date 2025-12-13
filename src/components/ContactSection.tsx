@@ -20,16 +20,33 @@ export function ContactSection() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    try {
+      const response = await fetch("https://formspree.io/f/mnnelgvb", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
-    toast({
-      title: "Message sent!",
-      description: "Thanks for reaching out. I'll get back to you soon.",
-    });
-
-    setFormData({ name: "", email: "", message: "" });
-    setIsSubmitting(false);
+      if (response.ok) {
+        toast({
+          title: "Message sent successfully!",
+          description: "I'll get back to you soon.",
+        });
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        throw new Error("Form submission failed");
+      }
+    } catch (error) {
+      toast({
+        title: "Something went wrong",
+        description: "Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (
@@ -51,18 +68,17 @@ export function ContactSection() {
           }`}
         >
           <span className="text-accent font-medium text-sm uppercase tracking-wider">
-            Get in Touch
+            Contact
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2">
-            Let's Work Together
+            Get In Touch
           </h2>
           <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
-            Have a project in mind or want to discuss DevOps solutions?
-            I'd love to hear from you.
+            Feel free to reach out for opportunities, collaborations, or questions.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-8 md:gap-12 max-w-5xl mx-auto">
           {/* Contact Info */}
           <div 
             className={`transition-all duration-700 ease-out delay-200 ${
@@ -131,7 +147,7 @@ export function ContactSection() {
 
           {/* Contact Form */}
           <div 
-            className={`bg-card rounded-2xl p-8 border border-border transition-all duration-700 ease-out delay-300 ${
+            className={`bg-card rounded-2xl p-6 md:p-8 border border-border transition-all duration-700 ease-out delay-300 ${
               isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
             }`}
           >
