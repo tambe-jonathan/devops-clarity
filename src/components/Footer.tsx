@@ -1,5 +1,7 @@
 import { Github, Linkedin, Mail, Heart } from "lucide-react";
 
+const RESUME_URL = "/Jonathan_Tambe_Senior_DevOps_Engineer.pdf";
+
 export function Footer() {
   const currentYear = new Date().getFullYear();
 
@@ -10,11 +12,19 @@ export function Footer() {
           {/* Logo & Copyright */}
           <div className="text-center md:text-left">
             <a href="#" className="text-xl font-semibold">
-              DevOps<span className="text-accent">.</span>
+              Jonathan<span className="text-accent">.dev</span>
             </a>
             <p className="text-primary-foreground/70 text-sm mt-2">
               © {currentYear} All rights reserved.
             </p>
+            <a
+              href={RESUME_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary-foreground/60 hover:text-primary-foreground text-sm mt-1 inline-block transition-colors"
+            >
+              Resume
+            </a>
           </div>
 
           {/* Social Links */}
