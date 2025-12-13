@@ -10,6 +10,8 @@ const navLinks = [
   { href: "#certifications", label: "Certifications" },
 ];
 
+const RESUME_URL = "/Jonathan_Tambe_Senior_DevOps_Engineer.pdf";
+
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -67,6 +69,14 @@ export function Navigation() {
                 {link.label}
               </a>
             ))}
+            <a
+              href={RESUME_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="nav-link text-muted-foreground hover:text-foreground"
+            >
+              Resume
+            </a>
             
             {/* Dark Mode Toggle */}
             <button
@@ -123,6 +133,15 @@ export function Navigation() {
                   {link.label}
                 </a>
               ))}
+              <a
+                href={RESUME_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="nav-link py-2 text-muted-foreground"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Resume
+              </a>
               <Button variant="hero" size="default" asChild className="mt-2">
                 <a href="#contact" onClick={() => setIsMobileMenuOpen(false)}>
                   Get in Touch
