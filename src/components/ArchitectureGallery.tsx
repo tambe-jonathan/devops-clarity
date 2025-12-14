@@ -1,49 +1,12 @@
-import { useState } from "react";
-import { X, ZoomIn } from "lucide-react";
-import {
-  Dialog,
-  DialogContent,
-  DialogTitle,
-} from "@/components/ui/dialog";
-import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
+import { Link } from "react-router-dom";
+import { ZoomIn } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-
-const architectures = [
-  {
-    title: "CI/CD Pipeline Architecture",
-    description: "End-to-end deployment flow from code commit to production",
-    category: "CI/CD",
-  },
-  {
-    title: "Kubernetes Cluster Design",
-    description: "Multi-zone high-availability cluster configuration",
-    category: "Kubernetes",
-  },
-  {
-    title: "Monitoring Stack",
-    description: "Prometheus + Grafana observability platform",
-    category: "Monitoring",
-  },
-  {
-    title: "Multi-Cloud Infrastructure",
-    description: "Hybrid cloud deployment architecture",
-    category: "Infrastructure",
-  },
-  {
-    title: "GitOps Workflow",
-    description: "ArgoCD-based continuous deployment",
-    category: "GitOps",
-  },
-  {
-    title: "Security Architecture",
-    description: "Zero-trust network and security controls",
-    category: "Security",
-  },
-];
+import { usePreserveScroll } from "@/hooks/useScrollRestoration";
+import { architectures } from "@/data/architectures";
 
 export function ArchitectureGallery() {
-  const [selectedArch, setSelectedArch] = useState<typeof architectures[0] | null>(null);
   const { ref: sectionRef, isVisible } = useScrollAnimation<HTMLElement>();
+  const { savePosition } = usePreserveScroll();
 
   return (
     <section id="architecture" ref={sectionRef} className="section-padding">
@@ -68,10 +31,11 @@ export function ArchitectureGallery() {
         {/* Gallery Grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {architectures.map((arch, index) => (
-            <button
-              key={index}
-              onClick={() => setSelectedArch(arch)}
-              className={`group relative bg-card rounded-2xl overflow-hidden border border-border hover:border-accent/30 transition-all duration-500 ease-out hover:shadow-lg hover:-translate-y-2 text-left ${
+            <Link
+              key={arch.id}
+              to={`/architecture/${arch.id}`}
+              onClick={savePosition}
+              className={`group relative bg-card rounded-2xl overflow-hidden border border-border hover:border-accent/30 transition-all duration-500 ease-out hover:shadow-lg hover:-translate-y-2 text-left block ${
                 isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
               }`}
               style={{ transitionDelay: `${150 + index * 100}ms` }}
@@ -104,45 +68,9 @@ export function ArchitectureGallery() {
                   {arch.description}
                 </p>
               </div>
-            </button>
+            </Link>
           ))}
         </div>
-
-        {/* Modal */}
-        <Dialog open={!!selectedArch} onOpenChange={() => setSelectedArch(null)}>
-          <DialogContent className="max-w-4xl p-0 overflow-hidden animate-scale-in">
-            <VisuallyHidden>
-              <DialogTitle>{selectedArch?.title}</DialogTitle>
-            </VisuallyHidden>
-            {selectedArch && (
-              <div>
-                {/* Large Preview */}
-                <div className="aspect-video bg-gradient-to-br from-secondary to-muted flex items-center justify-center">
-                  <div className="text-center p-8">
-                    <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                      <span className="text-4xl text-primary font-bold">
-                        {selectedArch.category[0]}
-                      </span>
-                    </div>
-                    <span className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
-                      {selectedArch.category} Architecture
-                    </span>
-                  </div>
-                </div>
-                
-                {/* Info */}
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold text-foreground mb-2">
-                    {selectedArch.title}
-                  </h3>
-                  <p className="text-muted-foreground">
-                    {selectedArch.description}
-                  </p>
-                </div>
-              </div>
-            )}
-          </DialogContent>
-        </Dialog>
       </div>
     </section>
   );
