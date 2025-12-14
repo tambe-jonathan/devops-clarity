@@ -1,8 +1,16 @@
+import cicdPipelineImg from "@/assets/architecture-cicd-pipeline.png";
+import kubernetesClusterImg from "@/assets/architecture-kubernetes-cluster.png";
+import monitoringStackImg from "@/assets/architecture-monitoring-stack.png";
+import multiCloudImg from "@/assets/architecture-multi-cloud.png";
+import gitopsWorkflowImg from "@/assets/architecture-gitops-workflow.png";
+import securityImg from "@/assets/architecture-security.png";
+
 export interface Architecture {
   id: string;
   title: string;
   description: string;
   category: string;
+  image: string;
   purpose: string;
   designRationale: string;
   howItWorks: string[];
@@ -15,6 +23,7 @@ export const architectures: Architecture[] = [
   {
     id: "cicd-pipeline",
     title: "CI/CD Pipeline Architecture",
+    image: cicdPipelineImg,
     description: "End-to-end deployment flow from code commit to production",
     category: "CI/CD",
     purpose: "Automate the entire software delivery lifecycle from code commit to production deployment, ensuring fast, reliable, and repeatable releases with minimal human intervention.",
@@ -46,6 +55,7 @@ export const architectures: Architecture[] = [
     id: "kubernetes-cluster",
     title: "Kubernetes Cluster Design",
     description: "Multi-zone high-availability cluster configuration",
+    image: kubernetesClusterImg,
     category: "Kubernetes",
     purpose: "Provide a resilient, scalable container orchestration platform that can withstand zone failures while maintaining consistent performance and enabling zero-downtime deployments.",
     designRationale: "The cluster spans three availability zones to ensure high availability. Node pools are segmented by workload type (system, application, GPU) to optimize cost and performance. Pod disruption budgets and topology spread constraints ensure workloads remain available during maintenance.",
@@ -76,6 +86,7 @@ export const architectures: Architecture[] = [
     id: "monitoring-stack",
     title: "Monitoring Stack",
     description: "Prometheus + Grafana observability platform",
+    image: monitoringStackImg,
     category: "Monitoring",
     purpose: "Provide comprehensive visibility into system health, performance, and behavior through metrics, logs, and traces, enabling proactive issue detection and rapid incident response.",
     designRationale: "A unified observability stack reduces cognitive load during incidents. By correlating metrics, logs, and traces in a single platform, MTTR is reduced significantly. The architecture uses a pull-based model for metrics to avoid overwhelming monitored services.",
@@ -106,6 +117,7 @@ export const architectures: Architecture[] = [
     id: "multi-cloud",
     title: "Multi-Cloud Infrastructure",
     description: "Hybrid cloud deployment architecture",
+    image: multiCloudImg,
     category: "Infrastructure",
     purpose: "Enable workload portability across cloud providers and on-premises infrastructure, avoiding vendor lock-in while optimizing for cost, performance, and compliance requirements.",
     designRationale: "The architecture abstracts cloud-specific services behind consistent interfaces using Terraform modules. This allows teams to deploy workloads to the most appropriate environment without rewriting infrastructure code, while maintaining security and compliance standards.",
@@ -136,6 +148,7 @@ export const architectures: Architecture[] = [
     id: "gitops-workflow",
     title: "GitOps Workflow",
     description: "ArgoCD-based continuous deployment",
+    image: gitopsWorkflowImg,
     category: "GitOps",
     purpose: "Implement a declarative, version-controlled approach to infrastructure and application deployment where Git serves as the single source of truth for the desired state of the system.",
     designRationale: "GitOps provides an audit trail for all changes, enables easy rollbacks, and allows developers to use familiar Git workflows for infrastructure changes. ArgoCD continuously reconciles the actual state with the desired state, self-healing configuration drift.",
@@ -166,6 +179,7 @@ export const architectures: Architecture[] = [
     id: "security-architecture",
     title: "Security Architecture",
     description: "Zero-trust network and security controls",
+    image: securityImg,
     category: "Security",
     purpose: "Implement defense-in-depth security controls based on zero-trust principles, ensuring that no implicit trust is granted based on network location and all access is continuously verified.",
     designRationale: "Traditional perimeter security is insufficient for modern distributed systems. This architecture assumes breach and implements multiple layers of security controls. Every request is authenticated, authorized, and encrypted regardless of source.",

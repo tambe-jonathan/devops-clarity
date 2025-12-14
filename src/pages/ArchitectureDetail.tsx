@@ -72,18 +72,13 @@ export default function ArchitectureDetail() {
             </p>
           </div>
 
-          {/* Diagram Placeholder */}
-          <div className="mb-12 rounded-2xl overflow-hidden border border-border bg-gradient-to-br from-secondary to-muted aspect-video flex items-center justify-center animate-fade-in" style={{ animationDelay: "0.1s" }}>
-            <div className="text-center p-8">
-              <div className="w-24 h-24 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                <span className="text-5xl text-primary font-bold">
-                  {architecture.category[0]}
-                </span>
-              </div>
-              <span className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
-                {architecture.category} Architecture Diagram
-              </span>
-            </div>
+          {/* Architecture Diagram */}
+          <div className="mb-12 rounded-2xl overflow-hidden border border-border bg-card animate-fade-in" style={{ animationDelay: "0.1s" }}>
+            <img 
+              src={architecture.image} 
+              alt={`${architecture.title} diagram`}
+              className="w-full h-auto object-contain"
+            />
           </div>
 
           {/* Content Grid */}
