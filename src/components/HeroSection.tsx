@@ -21,7 +21,7 @@ export function HeroSection() {
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-muted/60 border border-border/50 text-muted-foreground text-sm font-medium mb-8 opacity-0 hero-animate"
             style={{ animationDelay: "0.1s" }}
           >
-            Open to collaboration
+            Open to remote roles, consulting, and DevOps architecture projects
           </div>
 
           {/* Name */}
