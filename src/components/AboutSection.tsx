@@ -1,5 +1,6 @@
-import { Server, Cloud, Cog, LineChart, User } from "lucide-react";
+import { Server, Cloud, Cog, LineChart } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import headshotImage from "@/assets/headshot.jpg";
 
 const highlights = [
   { icon: Cloud, label: "Cloud Native" },
@@ -47,18 +48,12 @@ export function AboutSection() {
                   isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
                 }`}
               >
-                <div className="headshot-container w-48 h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 bg-gradient-to-br from-secondary to-muted flex items-center justify-center">
-                  {/* Placeholder - replace with actual image */}
-                  <div className="w-full h-full bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center">
-                    <User className="w-20 h-20 md:w-24 md:h-24 text-muted-foreground/40" />
-                  </div>
-                  {/* When you have an actual photo, use this instead:
+                <div className="headshot-container w-48 h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 bg-gradient-to-br from-secondary to-muted flex items-center justify-center overflow-hidden">
                   <img 
-                    src="/your-photo.jpg" 
-                    alt="Your Name - DevOps Engineer"
-                    className="w-full h-full object-cover"
+                    src={headshotImage} 
+                    alt="Jonathan Tambe - Senior DevOps Engineer"
+                    className="w-full h-full object-cover object-top"
                   />
-                  */}
                 </div>
               </div>
 
