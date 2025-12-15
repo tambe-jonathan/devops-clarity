@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Menu, X, Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -16,14 +16,56 @@ export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
+  const [highlightStyle, setHighlightStyle] = useState({ left: 0, width: 0, opacity: 0 });
+  const navRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
+      
+      // Determine active section based on scroll position
+      const sections = navLinks.map(link => link.href.replace('#', ''));
+      let currentSection = '';
+      
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          if (rect.top <= 100 && rect.bottom >= 100) {
+            currentSection = section;
+            break;
+          }
+        }
+      }
+      
+      setActiveSection(currentSection);
     };
+    
     window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Initial check
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Update highlighter position when active section changes
+  useEffect(() => {
+    if (!navRef.current || !activeSection) {
+      setHighlightStyle(prev => ({ ...prev, opacity: 0 }));
+      return;
+    }
+    
+    const activeLink = navRef.current.querySelector(`a[href="#${activeSection}"]`) as HTMLElement;
+    if (activeLink) {
+      const navRect = navRef.current.getBoundingClientRect();
+      const linkRect = activeLink.getBoundingClientRect();
+      
+      setHighlightStyle({
+        left: linkRect.left - navRect.left,
+        width: linkRect.width,
+        opacity: 1
+      });
+    }
+  }, [activeSection]);
 
   useEffect(() => {
     // Check for saved preference or system preference
@@ -63,9 +105,26 @@ export function Navigation() {
           </a>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          <div ref={navRef} className="hidden md:flex items-center gap-8 relative">
+            {/* Smooth highlight indicator */}
+            <div 
+              className="absolute bottom-0 h-0.5 bg-primary rounded-full transition-all duration-300 ease-out"
+              style={{
+                left: highlightStyle.left,
+                width: highlightStyle.width,
+                opacity: highlightStyle.opacity,
+              }}
+            />
             {navLinks.map((link) => (
-              <a key={link.href} href={link.href} className="nav-link">
+              <a 
+                key={link.href} 
+                href={link.href} 
+                className={`nav-link transition-colors duration-200 ${
+                  activeSection === link.href.replace('#', '') 
+                    ? 'text-foreground font-medium' 
+                    : ''
+                }`}
+              >
                 {link.label}
               </a>
             ))}
@@ -127,7 +186,11 @@ export function Navigation() {
                 <a
                   key={link.href}
                   href={link.href}
-                  className="nav-link py-2"
+                  className={`nav-link py-2 ${
+                    activeSection === link.href.replace('#', '') 
+                      ? 'text-foreground font-medium border-l-2 border-primary pl-3' 
+                      : ''
+                  }`}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.label}
