@@ -1,5 +1,11 @@
 import { ArrowRight, Github, Linkedin, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 export function HeroSection() {
   return (
@@ -24,29 +30,40 @@ export function HeroSection() {
             Open to remote roles, consulting, and DevOps architecture projects
           </div>
 
-          {/* Name */}
+          {/* Name - reduced by ~12% */}
           <h1 
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 opacity-0 hero-animate"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 opacity-0 hero-animate"
             style={{ animationDelay: "0.15s" }}
           >
             Jonathan
           </h1>
 
-          {/* Title */}
+          {/* Title - increased emphasis */}
           <p 
-            className="text-lg sm:text-xl md:text-2xl text-muted-foreground font-medium mb-6 opacity-0 hero-animate"
+            className="text-xl sm:text-2xl md:text-3xl text-foreground font-semibold mb-3 opacity-0 hero-animate tracking-wide"
             style={{ animationDelay: "0.25s" }}
           >
             DevOps Engineer{" "}
-            <span className="text-border">|</span> Cloud{" "}
-            <span className="text-border">|</span> Automation{" "}
-            <span className="text-border">|</span> CI/CD
+            <span className="text-primary/60">|</span>{" "}
+            <span className="text-primary">Cloud</span>{" "}
+            <span className="text-primary/60">|</span>{" "}
+            <span className="text-primary">Automation</span>{" "}
+            <span className="text-primary/60">|</span>{" "}
+            <span className="text-primary">CI/CD</span>
+          </p>
+
+          {/* Credibility line */}
+          <p 
+            className="text-base sm:text-lg text-muted-foreground font-normal mb-8 opacity-0 hero-animate"
+            style={{ animationDelay: "0.32s" }}
+          >
+            Nearly 4 years building cloud infrastructure, CI/CD pipelines, and automation for production systems.
           </p>
 
           {/* Value Statement */}
           <p 
             className="text-xl sm:text-2xl md:text-3xl text-foreground font-light max-w-2xl mx-auto mb-10 opacity-0 hero-animate"
-            style={{ animationDelay: "0.35s" }}
+            style={{ animationDelay: "0.4s" }}
           >
             I design <span className="text-primary font-medium">reliable</span>, 
             <span className="text-primary font-medium"> automated</span> systems that scale.
@@ -55,7 +72,7 @@ export function HeroSection() {
           {/* CTA Buttons */}
           <div 
             className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 opacity-0 hero-animate"
-            style={{ animationDelay: "0.45s" }}
+            style={{ animationDelay: "0.48s" }}
           >
             <Button variant="hero" size="xl" asChild>
               <a href="#projects">
@@ -68,37 +85,62 @@ export function HeroSection() {
             </Button>
           </div>
 
-          {/* Social Links */}
-          <div 
-            className="flex items-center justify-center gap-4 opacity-0 hero-animate"
-            style={{ animationDelay: "0.55s" }}
-          >
-            <a
-              href="https://github.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 rounded-full bg-muted hover:bg-primary hover:text-primary-foreground transition-all duration-300"
-              aria-label="GitHub"
+          {/* Social Links with Tooltips */}
+          <TooltipProvider delayDuration={100}>
+            <div 
+              className="flex items-center justify-center gap-4 opacity-0 hero-animate"
+              style={{ animationDelay: "0.55s" }}
             >
-              <Github size={20} />
-            </a>
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 rounded-full bg-muted hover:bg-primary hover:text-primary-foreground transition-all duration-300"
-              aria-label="LinkedIn"
-            >
-              <Linkedin size={20} />
-            </a>
-            <a
-              href="mailto:hello@example.com"
-              className="p-3 rounded-full bg-muted hover:bg-primary hover:text-primary-foreground transition-all duration-300"
-              aria-label="Email"
-            >
-              <Mail size={20} />
-            </a>
-          </div>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <a
+                    href="https://github.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 rounded-full bg-muted hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                    aria-label="GitHub"
+                  >
+                    <Github size={20} />
+                  </a>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>GitHub</p>
+                </TooltipContent>
+              </Tooltip>
+              
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <a
+                    href="https://linkedin.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 rounded-full bg-muted hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                    aria-label="LinkedIn"
+                  >
+                    <Linkedin size={20} />
+                  </a>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>LinkedIn</p>
+                </TooltipContent>
+              </Tooltip>
+              
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <a
+                    href="mailto:hello@example.com"
+                    className="p-3 rounded-full bg-muted hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                    aria-label="Email"
+                  >
+                    <Mail size={20} />
+                  </a>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Email</p>
+                </TooltipContent>
+              </Tooltip>
+            </div>
+          </TooltipProvider>
         </div>
       </div>
 
