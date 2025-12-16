@@ -26,11 +26,11 @@ export function AboutSection() {
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
-            <span className="text-accent font-medium text-sm uppercase tracking-wider">
-              About Me
+            <span className="text-accent font-medium text-sm tracking-wider">
+              Who I Am
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2">
-              Building the Infrastructure of Tomorrow
+              Engineering Reliability at Scale
             </h2>
           </div>
 
@@ -64,19 +64,18 @@ export function AboutSection() {
                     isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                   }`}
                 >
-                  I'm a DevOps engineer who builds{" "}
-                  <span className="text-foreground font-medium">automated pipelines</span>,{" "}
-                  <span className="text-foreground font-medium">scalable cloud infrastructure</span>, and{" "}
-                  <span className="text-foreground font-medium">high-reliability deployment systems</span>.
+                  I design and operate{" "}
+                  <span className="text-foreground font-medium">production-grade infrastructure</span>{" "}
+                  that reduces deployment risk, improves system uptime, and scales with confidence.
                 </p>
                 <p 
                   className={`text-lg md:text-xl text-muted-foreground leading-relaxed transition-all duration-700 ease-out delay-500 ${
                     isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                   }`}
                 >
-                  I focus on CI/CD, Kubernetes, Infrastructure as Code, monitoring, and 
-                  engineering for performance and reliability. My goal is to help teams 
-                  ship faster while maintaining the highest standards of quality and security.
+                  My work spans CI/CD pipelines, container orchestration, infrastructure automation, 
+                  and observability — always with a focus on operational reliability and minimizing 
+                  incident response time for real workloads.
                 </p>
               </div>
             </div>
