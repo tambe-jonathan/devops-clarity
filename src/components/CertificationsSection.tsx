@@ -38,6 +38,18 @@ const certifications = [
     credentialId: "CKA-2200-006789",
     verifyUrl: "https://www.credly.com/badges/verify",
   },
+  {
+    name: "Microsoft Azure Solutions Architect Expert",
+    issuer: "Microsoft",
+    description: "Designing and implementing Azure infrastructure and solutions",
+    impact: "Architected enterprise-scale Azure landing zones for production workloads",
+    icon: Cloud,
+    color: "text-blue-600 bg-blue-50 dark:bg-blue-950/30",
+    issued: "March 2023",
+    expires: "March 2025",
+    credentialId: "AZ-305-2023",
+    verifyUrl: "https://learn.microsoft.com/en-us/users/",
+  },
 ];
 
 export function CertificationsSection() {
