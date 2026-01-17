@@ -1,4 +1,5 @@
 import { Github, Youtube, ExternalLink, Palette, Images } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
@@ -130,10 +131,12 @@ export function ProjectsSection() {
                   </a>
                 )}
                 {(project as any).screenshots && (
-                  <Button variant="ghost" size="sm" className="transition-all duration-300 hover:scale-105">
-                    <Images className="w-4 h-4 mr-2" />
-                    View Screenshots
-                  </Button>
+                  <Link to="/project/security-pipeline/screenshots" onClick={() => sessionStorage.setItem('scrollPosition', window.scrollY.toString())}>
+                    <Button variant="ghost" size="sm" className="transition-all duration-300 hover:scale-105">
+                      <Images className="w-4 h-4 mr-2" />
+                      View Screenshots
+                    </Button>
+                  </Link>
                 )}
               </div>
             </article>
