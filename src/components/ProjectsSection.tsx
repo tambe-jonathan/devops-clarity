@@ -134,7 +134,7 @@ export function ProjectsSection() {
                   <Link to="/project/security-pipeline/screenshots" onClick={() => sessionStorage.setItem('scrollPosition', window.scrollY.toString())}>
                     <Button variant="ghost" size="sm" className="transition-all duration-300 hover:scale-105">
                       <Images className="w-4 h-4 mr-2" />
-                      View Screenshots
+                      View Execution
                     </Button>
                   </Link>
                 )}
