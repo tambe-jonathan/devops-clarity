@@ -1,4 +1,4 @@
-import { Github, Youtube, ExternalLink, Palette } from "lucide-react";
+import { Github, Youtube, ExternalLink, Palette, Images } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
@@ -30,9 +30,9 @@ const projects = [
     title: "Automated Security Scanning Pipeline",
     description:
       "DevSecOps pipeline that integrates security scanning at every stage. Includes container scanning, SAST, dependency checks, and infrastructure security validation.",
-    tools: ["Trivy", "SonarQube", "GitHub Actions", "OWASP", "Docker"],
+    tools: ["Jenkins", "Java 17", "Spring Boot", "Maven 3", "Trivy", "SonarQube", "Docker", "AWS ECR", "DockerHub", "Nexus", "MicroK8s", "AWS EC2"],
     github: "https://github.com",
-    youtube: "https://youtube.com",
+    screenshots: true,
   },
 ];
 
@@ -128,6 +128,12 @@ export function ProjectsSection() {
                       Watch Demo
                     </Button>
                   </a>
+                )}
+                {(project as any).screenshots && (
+                  <Button variant="ghost" size="sm" className="transition-all duration-300 hover:scale-105">
+                    <Images className="w-4 h-4 mr-2" />
+                    View Screenshots
+                  </Button>
                 )}
               </div>
             </article>
