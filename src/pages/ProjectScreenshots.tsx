@@ -1,6 +1,6 @@
 import { useNavigate, Link } from "react-router-dom";
 import { useEffect } from "react";
-import { ArrowLeft, Images } from "lucide-react";
+import { ArrowLeft, Images, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { Navigation } from "@/components/Navigation";
@@ -10,6 +10,13 @@ interface Screenshot {
   title: string;
   description?: string;
   image: string;
+}
+
+interface AppDemo {
+  title: string;
+  appName: string;
+  description: string;
+  gif: string;
 }
 
 // Placeholder screenshots - replace with actual images
@@ -40,6 +47,14 @@ const screenshots: Screenshot[] = [
     image: "/placeholder.svg"
   }
 ];
+
+// App demo GIF - replace with actual GIF
+const appDemo: AppDemo = {
+  title: "Application Demo",
+  appName: "DevOps Taskmaster",
+  description: "Live demonstration of the DevOps Taskmaster application in action, showcasing task management and automation features",
+  gif: "/placeholder.svg"
+};
 
 export default function ProjectScreenshots() {
   const navigate = useNavigate();
@@ -96,13 +111,48 @@ export default function ProjectScreenshots() {
             </p>
           </div>
 
+          {/* App Demo GIF Section */}
+          <div className="mb-12 animate-fade-in" style={{ animationDelay: '0.1s' }}>
+            <div className="flex items-center gap-2 mb-6">
+              <Play className="w-5 h-5 text-accent" />
+              <h2 className="text-xl font-semibold text-foreground">
+                {appDemo.appName} - Live Demo
+              </h2>
+            </div>
+            <article className="group rounded-2xl overflow-hidden border border-border bg-card">
+              {/* GIF Display */}
+              <div className="aspect-video bg-secondary/50 overflow-hidden">
+                <img 
+                  src={appDemo.gif} 
+                  alt={`${appDemo.appName} demo`}
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              
+              {/* Demo Info */}
+              <div className="p-6">
+                <h3 className="text-lg font-semibold text-foreground mb-2">
+                  {appDemo.title}
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  {appDemo.description}
+                </p>
+              </div>
+            </article>
+          </div>
+
           {/* Screenshots Grid */}
+          <div className="mb-6">
+            <h2 className="text-xl font-semibold text-foreground mb-6">
+              Pipeline Execution Screenshots
+            </h2>
+          </div>
           <div className="grid md:grid-cols-2 gap-8 mb-12">
             {screenshots.map((screenshot, index) => (
               <article 
                 key={index}
                 className="group rounded-2xl overflow-hidden border border-border bg-card animate-fade-in"
-                style={{ animationDelay: `${0.1 * (index + 1)}s` }}
+                style={{ animationDelay: `${0.1 * (index + 2)}s` }}
               >
                 {/* Screenshot Image */}
                 <div className="aspect-video bg-secondary/50 overflow-hidden">
