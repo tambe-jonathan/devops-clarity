@@ -22,28 +22,33 @@ interface AppDemo {
 // Placeholder screenshots - replace with actual images
 const screenshots: Screenshot[] = [
   {
-    title: "Jenkins Pipeline Overview",
-    description: "Complete CI/CD pipeline stages showing build, test, and security scanning",
+    title: "SonarQube Quality Gate",
+    description: "Static code analysis showing quality gate status, code coverage, and security metrics",
     image: "/placeholder.svg"
   },
   {
-    title: "Trivy Container Scan Results",
-    description: "Security vulnerability scan output for Docker containers",
+    title: "Trivy Security Scan",
+    description: "Container vulnerability scanning results identifying CVEs and security issues",
     image: "/placeholder.svg"
   },
   {
-    title: "SonarQube Code Analysis",
-    description: "Static code analysis showing code quality metrics and security hotspots",
+    title: "Jenkins Pipeline Run",
+    description: "Complete CI/CD pipeline execution showing build, test, scan, and deploy stages",
     image: "/placeholder.svg"
   },
   {
-    title: "AWS ECR Deployment",
-    description: "Container registry showing successfully pushed images",
+    title: "Kubernetes Cluster State",
+    description: "MicroK8s cluster status with running pods, services, and deployments",
     image: "/placeholder.svg"
   },
   {
-    title: "MicroK8s Cluster Status",
-    description: "Kubernetes deployment status with running pods",
+    title: "Sonatype Nexus (Binary Storage)",
+    description: "Artifact repository showing stored build artifacts and dependency management",
+    image: "/placeholder.svg"
+  },
+  {
+    title: "AWS ECR & DockerHub (Container Registries)",
+    description: "Container registries displaying pushed Docker images and tags",
     image: "/placeholder.svg"
   }
 ];
