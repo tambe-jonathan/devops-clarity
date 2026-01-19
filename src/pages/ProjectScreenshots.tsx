@@ -1,6 +1,6 @@
 import { useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { ArrowLeft, Images, Play, X, ZoomIn } from "lucide-react";
+import { ArrowLeft, Images, X, ZoomIn } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
@@ -8,19 +8,11 @@ import { Breadcrumb } from "@/components/Breadcrumb";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import sonarqubeScreenshot from "@/assets/screenshots/sonarqube-quality-gate.png";
-import demoGif from "@/assets/screenshots/devops-taskmaster-demo.gif";
 
 interface Screenshot {
   title: string;
   description?: string;
   image: string;
-}
-
-interface AppDemo {
-  title: string;
-  appName: string;
-  description: string;
-  gif: string;
 }
 
 // Placeholder screenshots - replace with actual images
@@ -56,14 +48,6 @@ const screenshots: Screenshot[] = [
     image: "/placeholder.svg"
   }
 ];
-
-// App demo GIF
-const appDemo: AppDemo = {
-  title: "Application Demo",
-  appName: "DevOps Taskmaster",
-  description: "Live demonstration of the DevOps Taskmaster application in action, showcasing task management and automation features",
-  gif: demoGif
-};
 
 export default function ProjectScreenshots() {
   const navigate = useNavigate();
@@ -132,41 +116,6 @@ export default function ProjectScreenshots() {
             </p>
           </div>
 
-          {/* App Demo GIF Section */}
-          <div className="mb-12 animate-fade-in" style={{ animationDelay: '0.1s' }}>
-            <div className="flex items-center gap-2 mb-6">
-              <Play className="w-5 h-5 text-accent" />
-              <h2 className="text-xl font-semibold text-foreground">
-                {appDemo.appName} - Live Demo
-              </h2>
-            </div>
-            <article className="group rounded-2xl overflow-hidden border border-border bg-card">
-              {/* GIF Display */}
-              <div 
-                className="aspect-video bg-secondary/50 overflow-hidden cursor-pointer relative"
-                onClick={() => openLightbox(appDemo.gif, `${appDemo.appName} - ${appDemo.title}`)}
-              >
-                <img 
-                  src={appDemo.gif} 
-                  alt={`${appDemo.appName} demo`}
-                  className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
-                  <ZoomIn className="w-10 h-10 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </div>
-              </div>
-              
-              {/* Demo Info */}
-              <div className="p-6">
-                <h3 className="text-lg font-semibold text-foreground mb-2">
-                  {appDemo.title}
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  {appDemo.description}
-                </p>
-              </div>
-            </article>
-          </div>
 
           {/* Screenshots Grid */}
           <div className="mb-6">
