@@ -76,63 +76,45 @@ export function CertificationsSection() {
           </p>
         </div>
 
-        {/* Certifications Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        {/* Certifications Grid - Single Row */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-7xl mx-auto">
           {certifications.map((cert, index) => (
             <div 
               key={index} 
-              className={`group bg-background border border-border/50 rounded-xl p-6 transition-all duration-500 ease-out hover:border-border hover:shadow-lg ${
+              className={`group bg-background border border-border/50 rounded-xl p-4 transition-all duration-500 ease-out hover:border-border hover:shadow-lg ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
               style={{ transitionDelay: `${150 + index * 75}ms` }}
             >
-              {/* Primary Layer: Icon, Name, Issuer, Description */}
-              <div className="flex items-start gap-4 mb-4">
-                <div className={`p-3 rounded-lg ${cert.color} shrink-0 transition-transform duration-300 group-hover:scale-105`}>
-                  <cert.icon className="w-5 h-5" />
+              {/* Primary Layer: Icon, Name, Issuer */}
+              <div className="flex items-start gap-3 mb-3">
+                <div className={`p-2 rounded-lg ${cert.color} shrink-0 transition-transform duration-300 group-hover:scale-105`}>
+                  <cert.icon className="w-4 h-4" />
                 </div>
                 <div className="min-w-0">
-                  <h3 className="font-semibold text-foreground text-base leading-tight">
+                  <h3 className="font-semibold text-foreground text-sm leading-tight">
                     {cert.name}
                   </h3>
-                  <p className="text-sm text-muted-foreground mt-0.5">{cert.issuer}</p>
+                  <p className="text-xs text-muted-foreground mt-0.5">{cert.issuer}</p>
                 </div>
               </div>
 
               {/* Description */}
-              <p className="text-sm text-muted-foreground leading-relaxed mb-3">
+              <p className="text-xs text-muted-foreground leading-relaxed mb-2">
                 {cert.description}
               </p>
 
-              {/* Impact Statement */}
-              <p className="text-xs text-primary/80 font-medium mb-4 italic">
-                "{cert.impact}"
-              </p>
-
-              {/* Secondary Layer: Metadata */}
-              <div className="pt-4 border-t border-border/40">
-                <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted-foreground mb-3">
-                  <span>Issued: {cert.issued}</span>
-                  {cert.expires && <span>Expires: {cert.expires}</span>}
-                </div>
-                {cert.credentialId && (
-                  <p className="text-xs text-muted-foreground/70 mb-3">
-                    ID: {cert.credentialId}
-                  </p>
-                )}
-                
-                {/* Verify Link */}
-                <a
-                  href={cert.verifyUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs text-primary/70 hover:text-primary transition-colors group/link"
-                >
-                  <CheckCircle2 className="w-3.5 h-3.5" />
-                  <span>Verify Credential</span>
-                  <ExternalLink className="w-3 h-3 opacity-0 -translate-x-1 group-hover/link:opacity-100 group-hover/link:translate-x-0 transition-all" />
-                </a>
-              </div>
+              {/* Verify Link */}
+              <a
+                href={cert.verifyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-xs text-primary/70 hover:text-primary transition-colors group/link mt-auto pt-2 border-t border-border/40"
+              >
+                <CheckCircle2 className="w-3 h-3" />
+                <span>Verify</span>
+                <ExternalLink className="w-2.5 h-2.5 opacity-0 -translate-x-1 group-hover/link:opacity-100 group-hover/link:translate-x-0 transition-all" />
+              </a>
             </div>
           ))}
         </div>

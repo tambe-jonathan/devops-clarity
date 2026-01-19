@@ -1,16 +1,23 @@
-import { Github, Youtube, ExternalLink, Palette, Images } from "lucide-react";
+import { Github, ExternalLink, Palette, Images } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const projects = [
   {
+    title: "Automated Security Scanning Pipeline",
+    description:
+      "DevSecOps pipeline that integrates security scanning at every stage. Includes container scanning, SAST, dependency checks, and infrastructure security validation.",
+    tools: ["Jenkins", "Java 17", "Spring Boot", "Maven 3", "Trivy", "SonarQube", "Docker", "AWS ECR", "DockerHub", "Nexus", "MicroK8s", "AWS EC2"],
+    github: "https://github.com",
+    screenshots: true,
+  },
+  {
     title: "End-to-End CI/CD Pipeline for Microservices",
     description:
       "Complete CI/CD pipeline for deploying containerized microservices to Kubernetes. Includes automated testing, image building, and GitOps-based deployments with ArgoCD.",
     tools: ["GitHub Actions", "Docker", "Kubernetes", "ArgoCD", "Helm"],
     github: "https://github.com",
-    youtube: "https://youtube.com",
   },
   {
     title: "Multi-Cloud Infrastructure with Terraform",
@@ -18,7 +25,6 @@ const projects = [
       "Infrastructure as Code solution for deploying consistent environments across AWS and Azure. Implements best practices for security, networking, and cost optimization.",
     tools: ["Terraform", "AWS", "Azure", "Python", "Ansible"],
     github: "https://github.com",
-    youtube: "https://youtube.com",
   },
   {
     title: "Kubernetes Monitoring Stack",
@@ -28,12 +34,18 @@ const projects = [
     github: "https://github.com",
   },
   {
-    title: "Automated Security Scanning Pipeline",
+    title: "GitOps Deployment Platform",
     description:
-      "DevSecOps pipeline that integrates security scanning at every stage. Includes container scanning, SAST, dependency checks, and infrastructure security validation.",
-    tools: ["Jenkins", "Java 17", "Spring Boot", "Maven 3", "Trivy", "SonarQube", "Docker", "AWS ECR", "DockerHub", "Nexus", "MicroK8s", "AWS EC2"],
+      "Kubernetes-native GitOps solution using ArgoCD for declarative continuous delivery. Features automated sync, rollback capabilities, and multi-cluster management.",
+    tools: ["ArgoCD", "Kubernetes", "Helm", "Kustomize", "GitHub Actions"],
     github: "https://github.com",
-    screenshots: true,
+  },
+  {
+    title: "Cloud Cost Optimization Engine",
+    description:
+      "Automated cost analysis and optimization platform for AWS infrastructure. Identifies unused resources, rightsizing opportunities, and reserved instance recommendations.",
+    tools: ["Python", "AWS Lambda", "CloudWatch", "Terraform", "S3"],
+    github: "https://github.com",
   },
 ];
 
@@ -118,18 +130,6 @@ export function ProjectsSection() {
                     Design
                   </Button>
                 </a>
-                {project.youtube && (
-                  <a 
-                    href={project.youtube}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Button variant="ghost" size="sm" className="transition-all duration-300 hover:scale-105">
-                      <Youtube className="w-4 h-4 mr-2" />
-                      Watch Demo
-                    </Button>
-                  </a>
-                )}
                 {(project as any).screenshots && (
                   <Link to="/project/security-pipeline/screenshots" onClick={() => sessionStorage.setItem('scrollPosition', window.scrollY.toString())}>
                     <Button variant="ghost" size="sm" className="transition-all duration-300 hover:scale-105">
