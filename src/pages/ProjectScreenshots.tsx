@@ -1,7 +1,9 @@
 import { useNavigate, Link } from "react-router-dom";
-import { useEffect } from "react";
-import { ArrowLeft, Images, Play } from "lucide-react";
+import { useEffect, useState } from "react";
+import { ArrowLeft, Images, Play, X, ZoomIn } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
@@ -63,6 +65,8 @@ const appDemo: AppDemo = {
 
 export default function ProjectScreenshots() {
   const navigate = useNavigate();
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxImage, setLightboxImage] = useState<{ src: string; title: string } | null>(null);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
@@ -71,6 +75,16 @@ export default function ProjectScreenshots() {
   const handleReturnToProjects = () => {
     sessionStorage.setItem('restore_scroll', 'true');
     navigate('/');
+  };
+
+  const openLightbox = (src: string, title: string) => {
+    setLightboxImage({ src, title });
+    setLightboxOpen(true);
+  };
+
+  const closeLightbox = () => {
+    setLightboxOpen(false);
+    setLightboxImage(null);
   };
 
   return (
@@ -126,12 +140,18 @@ export default function ProjectScreenshots() {
             </div>
             <article className="group rounded-2xl overflow-hidden border border-border bg-card">
               {/* GIF Display */}
-              <div className="aspect-video bg-secondary/50 overflow-hidden">
+              <div 
+                className="aspect-video bg-secondary/50 overflow-hidden cursor-pointer relative"
+                onClick={() => openLightbox(appDemo.gif, `${appDemo.appName} - ${appDemo.title}`)}
+              >
                 <img 
                   src={appDemo.gif} 
                   alt={`${appDemo.appName} demo`}
-                  className="w-full h-full object-contain"
+                  className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
                 />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                  <ZoomIn className="w-10 h-10 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </div>
               </div>
               
               {/* Demo Info */}
@@ -160,12 +180,18 @@ export default function ProjectScreenshots() {
                 style={{ animationDelay: `${0.1 * (index + 2)}s` }}
               >
                 {/* Screenshot Image */}
-                <div className="aspect-video bg-secondary/50 overflow-hidden">
+                <div 
+                  className="aspect-video bg-secondary/50 overflow-hidden cursor-pointer relative"
+                  onClick={() => openLightbox(screenshot.image, screenshot.title)}
+                >
                   <img 
                     src={screenshot.image} 
                     alt={screenshot.title}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                    <ZoomIn className="w-10 h-10 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  </div>
                 </div>
                 
                 {/* Screenshot Info */}
@@ -198,6 +224,35 @@ export default function ProjectScreenshots() {
       </main>
 
       <Footer />
+
+      {/* Lightbox Modal */}
+      <Dialog open={lightboxOpen} onOpenChange={setLightboxOpen}>
+        <DialogContent className="max-w-[95vw] max-h-[95vh] p-0 bg-black/95 border-none">
+          <VisuallyHidden>
+            <DialogTitle>{lightboxImage?.title || "Image preview"}</DialogTitle>
+          </VisuallyHidden>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="absolute top-4 right-4 z-50 text-white hover:bg-white/20 rounded-full"
+            onClick={closeLightbox}
+          >
+            <X className="w-6 h-6" />
+          </Button>
+          {lightboxImage && (
+            <div className="flex flex-col items-center justify-center w-full h-full p-4">
+              <img
+                src={lightboxImage.src}
+                alt={lightboxImage.title}
+                className="max-w-full max-h-[80vh] object-contain rounded-lg"
+              />
+              <p className="text-white text-lg font-medium mt-4 text-center">
+                {lightboxImage.title}
+              </p>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
