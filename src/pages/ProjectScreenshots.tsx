@@ -7,6 +7,7 @@ import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
+import sonarqubeScreenshot from "@/assets/screenshots/sonarqube-quality-gate.png";
 
 interface Screenshot {
   title: string;
@@ -26,7 +27,7 @@ const screenshots: Screenshot[] = [
   {
     title: "SonarQube Quality Gate",
     description: "Static code analysis showing quality gate status, code coverage, and security metrics",
-    image: "/placeholder.svg"
+    image: sonarqubeScreenshot
   },
   {
     title: "Trivy Security Scan",
