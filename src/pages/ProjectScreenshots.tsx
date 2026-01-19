@@ -8,6 +8,7 @@ import { Breadcrumb } from "@/components/Breadcrumb";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import sonarqubeScreenshot from "@/assets/screenshots/sonarqube-quality-gate.png";
+import demoGif from "@/assets/screenshots/devops-taskmaster-demo.gif";
 
 interface Screenshot {
   title: string;
@@ -56,12 +57,12 @@ const screenshots: Screenshot[] = [
   }
 ];
 
-// App demo GIF - replace with actual GIF
+// App demo GIF
 const appDemo: AppDemo = {
   title: "Application Demo",
   appName: "DevOps Taskmaster",
   description: "Live demonstration of the DevOps Taskmaster application in action, showcasing task management and automation features",
-  gif: "/placeholder.svg"
+  gif: demoGif
 };
 
 export default function ProjectScreenshots() {
