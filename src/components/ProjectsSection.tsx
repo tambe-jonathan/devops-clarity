@@ -2,6 +2,7 @@ import { Github, ExternalLink, Palette, Images } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { saveScrollPosition } from "@/hooks/useScrollRestoration";
 
 const projects = [
   {
@@ -136,7 +137,10 @@ export function ProjectsSection() {
                   </Button>
                 </a>
                 {project.screenshotSlug && (
-                  <Link to={`/project/${project.screenshotSlug}/screenshots`} onClick={() => sessionStorage.setItem('scrollPosition', window.scrollY.toString())}>
+                  <Link 
+                    to={`/project/${project.screenshotSlug}/screenshots`} 
+                    onClick={() => saveScrollPosition()}
+                  >
                     <Button variant="ghost" size="sm" className="transition-all duration-300 hover:scale-105">
                       <Images className="w-4 h-4 mr-2" />
                       View Execution

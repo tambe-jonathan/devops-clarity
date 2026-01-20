@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { ArrowLeft, Images, X, ZoomIn } from "lucide-react";
+import { ArrowLeft, Images, X, ZoomIn, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
@@ -8,6 +8,7 @@ import { Breadcrumb } from "@/components/Breadcrumb";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { getProjectBySlug } from "@/data/projectScreenshots";
+import { saveScrollPosition } from "@/hooks/useScrollRestoration";
 import sonarqubeScreenshot from "@/assets/screenshots/sonarqube-quality-gate.png";
 
 // Map for dynamic image imports
@@ -29,7 +30,7 @@ export default function ProjectScreenshots() {
 
   const handleReturnToProjects = () => {
     sessionStorage.setItem('restore_scroll', 'true');
-    navigate('/');
+    navigate('/', { replace: false });
   };
 
   const openLightbox = (src: string, title: string) => {
@@ -99,6 +100,41 @@ export default function ProjectScreenshots() {
               {project.description}
             </p>
           </div>
+
+          {/* Demo GIF Section */}
+          {project.demoGif && (
+            <div className="mb-16 animate-fade-in">
+              <div className="flex items-center gap-2 mb-6">
+                <Play className="w-5 h-5 text-primary" />
+                <h2 className="text-xl font-semibold text-foreground">
+                  Application Demo
+                </h2>
+              </div>
+              <div 
+                className="group rounded-2xl overflow-hidden border border-border bg-card cursor-pointer"
+                onClick={() => openLightbox(getImageSrc(project.demoGif!.image), project.demoGif!.title)}
+              >
+                <div className="aspect-video bg-secondary/50 overflow-hidden relative">
+                  <img 
+                    src={getImageSrc(project.demoGif.image)} 
+                    alt={project.demoGif.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                    <ZoomIn className="w-12 h-12 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  </div>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-lg font-semibold text-foreground mb-2">
+                    {project.demoGif.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    {project.demoGif.description}
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
 
           {/* Screenshots Grid */}
           <div className="mb-6">
