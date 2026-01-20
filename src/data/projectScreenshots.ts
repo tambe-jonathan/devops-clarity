@@ -8,6 +8,11 @@ export interface ProjectScreenshotData {
   slug: string;
   title: string;
   description: string;
+  demoGif?: {
+    title: string;
+    description: string;
+    image: string;
+  };
   screenshots: Screenshot[];
 }
 
@@ -16,6 +21,11 @@ export const projectScreenshots: ProjectScreenshotData[] = [
     slug: "security-pipeline",
     title: "Automated Security Scanning Pipeline",
     description: "Screenshots demonstrating the DevSecOps pipeline execution, security scanning results, and successful deployments.",
+    demoGif: {
+      title: "Security Pipeline Demo",
+      description: "End-to-end demonstration of the automated security scanning pipeline in action",
+      image: "/placeholder.svg"
+    },
     screenshots: [
       {
         title: "SonarQube Quality Gate",
@@ -53,6 +63,11 @@ export const projectScreenshots: ProjectScreenshotData[] = [
     slug: "microservices-cicd",
     title: "End-to-End CI/CD Pipeline for Microservices",
     description: "Screenshots demonstrating the complete CI/CD workflow, GitOps deployments, and Kubernetes orchestration.",
+    demoGif: {
+      title: "Microservices CI/CD Demo",
+      description: "Live demonstration of the end-to-end CI/CD pipeline deploying microservices to Kubernetes",
+      image: "/placeholder.svg"
+    },
     screenshots: [
       {
         title: "GitHub Actions Workflow",
@@ -90,6 +105,11 @@ export const projectScreenshots: ProjectScreenshotData[] = [
     slug: "multi-cloud-terraform",
     title: "Multi-Cloud Infrastructure with Terraform",
     description: "Screenshots showcasing Infrastructure as Code deployments across AWS and Azure cloud providers.",
+    demoGif: {
+      title: "Terraform Deployment Demo",
+      description: "Live demonstration of multi-cloud infrastructure provisioning with Terraform",
+      image: "/placeholder.svg"
+    },
     screenshots: [
       {
         title: "Terraform Plan Output",
@@ -127,6 +147,11 @@ export const projectScreenshots: ProjectScreenshotData[] = [
     slug: "kubernetes-monitoring",
     title: "Kubernetes Monitoring Stack",
     description: "Screenshots demonstrating the production-ready monitoring solution with custom dashboards and alerting.",
+    demoGif: {
+      title: "Monitoring Stack Demo",
+      description: "Live demonstration of the Kubernetes monitoring stack with Prometheus and Grafana dashboards",
+      image: "/placeholder.svg"
+    },
     screenshots: [
       {
         title: "Grafana Dashboard Overview",
@@ -164,6 +189,11 @@ export const projectScreenshots: ProjectScreenshotData[] = [
     slug: "gitops-platform",
     title: "GitOps Deployment Platform",
     description: "Screenshots showcasing the Kubernetes-native GitOps solution with ArgoCD for declarative continuous delivery.",
+    demoGif: {
+      title: "GitOps Platform Demo",
+      description: "Live demonstration of GitOps deployments with ArgoCD sync and rollback capabilities",
+      image: "/placeholder.svg"
+    },
     screenshots: [
       {
         title: "ArgoCD Application Dashboard",
@@ -201,6 +231,11 @@ export const projectScreenshots: ProjectScreenshotData[] = [
     slug: "cost-optimization",
     title: "Cloud Cost Optimization Engine",
     description: "Screenshots demonstrating the automated cost analysis and optimization platform for AWS infrastructure.",
+    demoGif: {
+      title: "Cost Optimization Demo",
+      description: "Live demonstration of the cost analysis engine identifying savings opportunities",
+      image: "/placeholder.svg"
+    },
     screenshots: [
       {
         title: "Cost Dashboard Overview",
