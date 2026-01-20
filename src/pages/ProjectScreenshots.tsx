@@ -1,4 +1,4 @@
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { ArrowLeft, Images, X, ZoomIn } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -7,52 +7,21 @@ import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
+import { getProjectBySlug } from "@/data/projectScreenshots";
 import sonarqubeScreenshot from "@/assets/screenshots/sonarqube-quality-gate.png";
 
-interface Screenshot {
-  title: string;
-  description?: string;
-  image: string;
-}
-
-// Placeholder screenshots - replace with actual images
-const screenshots: Screenshot[] = [
-  {
-    title: "SonarQube Quality Gate",
-    description: "Static code analysis showing quality gate status, code coverage, and security metrics",
-    image: sonarqubeScreenshot
-  },
-  {
-    title: "Trivy Security Scan",
-    description: "Container vulnerability scanning results identifying CVEs and security issues",
-    image: "/placeholder.svg"
-  },
-  {
-    title: "Jenkins Pipeline Run",
-    description: "Complete CI/CD pipeline execution showing build, test, scan, and deploy stages",
-    image: "/placeholder.svg"
-  },
-  {
-    title: "Kubernetes Cluster State",
-    description: "MicroK8s cluster status with running pods, services, and deployments",
-    image: "/placeholder.svg"
-  },
-  {
-    title: "Sonatype Nexus (Binary Storage)",
-    description: "Artifact repository showing stored build artifacts and dependency management",
-    image: "/placeholder.svg"
-  },
-  {
-    title: "AWS ECR & DockerHub (Container Registries)",
-    description: "Container registries displaying pushed Docker images and tags",
-    image: "/placeholder.svg"
-  }
-];
+// Map for dynamic image imports
+const imageMap: Record<string, string> = {
+  "/src/assets/screenshots/sonarqube-quality-gate.png": sonarqubeScreenshot,
+};
 
 export default function ProjectScreenshots() {
   const navigate = useNavigate();
+  const { slug } = useParams<{ slug: string }>();
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxImage, setLightboxImage] = useState<{ src: string; title: string } | null>(null);
+
+  const project = getProjectBySlug(slug || "");
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
@@ -73,6 +42,21 @@ export default function ProjectScreenshots() {
     setLightboxImage(null);
   };
 
+  const getImageSrc = (imagePath: string) => {
+    return imageMap[imagePath] || imagePath;
+  };
+
+  if (!project) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-foreground mb-4">Project not found</h1>
+          <Button onClick={() => navigate('/')}>Return to Home</Button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
@@ -83,7 +67,7 @@ export default function ProjectScreenshots() {
           <Breadcrumb 
             items={[
               { label: "Projects", href: "/#projects" },
-              { label: "Security Pipeline Screenshots" }
+              { label: `${project.title} Screenshots` }
             ]}
           />
 
@@ -109,13 +93,12 @@ export default function ProjectScreenshots() {
               </span>
             </div>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-              Automated Security Scanning Pipeline
+              {project.title}
             </h1>
             <p className="text-lg text-muted-foreground max-w-3xl">
-              Screenshots demonstrating the DevSecOps pipeline execution, security scanning results, and successful deployments.
+              {project.description}
             </p>
           </div>
-
 
           {/* Screenshots Grid */}
           <div className="mb-6">
@@ -124,7 +107,7 @@ export default function ProjectScreenshots() {
             </h2>
           </div>
           <div className="grid md:grid-cols-2 gap-8 mb-12">
-            {screenshots.map((screenshot, index) => (
+            {project.screenshots.map((screenshot, index) => (
               <article 
                 key={index}
                 className="group rounded-2xl overflow-hidden border border-border bg-card animate-fade-in"
@@ -133,10 +116,10 @@ export default function ProjectScreenshots() {
                 {/* Screenshot Image */}
                 <div 
                   className="aspect-video bg-secondary/50 overflow-hidden cursor-pointer relative"
-                  onClick={() => openLightbox(screenshot.image, screenshot.title)}
+                  onClick={() => openLightbox(getImageSrc(screenshot.image), screenshot.title)}
                 >
                   <img 
-                    src={screenshot.image} 
+                    src={getImageSrc(screenshot.image)} 
                     alt={screenshot.title}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
