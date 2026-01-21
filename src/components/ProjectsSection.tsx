@@ -126,16 +126,15 @@ export function ProjectsSection() {
                     View Code
                   </Button>
                 </a>
-                <a 
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link 
+                  to={`/project/${project.screenshotSlug}/design`}
+                  onClick={() => saveScrollPosition()}
                 >
                   <Button variant="ghost" size="sm" className="transition-all duration-300 hover:scale-105">
                     <Palette className="w-4 h-4 mr-2" />
                     Design
                   </Button>
-                </a>
+                </Link>
                 {project.screenshotSlug && (
                   <Link 
                     to={`/project/${project.screenshotSlug}/screenshots`} 
