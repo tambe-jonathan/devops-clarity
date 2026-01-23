@@ -124,52 +124,65 @@ export const projectDesigns: ProjectDesignData[] = [
     ],
     projectStructure: [
       {
-        name: "jenkins/",
+        name: "app/",
         type: "folder",
-        description: "Pipeline configurations",
+        description: "Java Source Code",
         children: [
-          { name: "Jenkinsfile", type: "file", description: "Main 14-stage pipeline definition" },
-          { name: "jenkins-plugins.txt", type: "file", description: "Required plugins list" }
+          { name: "src/main/", type: "folder", description: "Spring Boot Logic & Resources" },
+          { name: "Dockerfile", type: "file", description: "Multi-stage optimized build" },
+          { name: "pom.xml", type: "file", description: "Maven Dependencies" }
         ]
       },
       {
-        name: "src/",
+        name: "docs/",
         type: "folder",
-        description: "Spring Boot application source",
+        description: "Component-specific documentation",
         children: [
-          { name: "main/java/", type: "folder", description: "Application code (Java 17)" },
-          { name: "test/java/", type: "folder", description: "Unit and integration tests" },
-          { name: "resources/", type: "folder", description: "Application properties" }
+          { name: "Docker.md, Port.md, jenkins.md, kubernetes.md, etc.", type: "file", description: "Technical documentation" }
         ]
       },
       {
-        name: "docker/",
+        name: "infra/",
         type: "folder",
-        description: "Container configuration",
+        description: "Kubernetes Manifests",
         children: [
-          { name: "Dockerfile", type: "file", description: "Multi-stage build definition" },
-          { name: "docker-compose.yml", type: "file", description: "Local development stack" }
+          { name: "deployment.yaml", type: "file", description: "Deployment & Service configuration" }
         ]
       },
       {
-        name: "k8s/",
+        name: "scripts/",
         type: "folder",
-        description: "Kubernetes manifests",
+        description: "Automation & Security utility scripts",
         children: [
-          { name: "deployment.yaml", type: "file", description: "Application deployment" },
-          { name: "service.yaml", type: "file", description: "Service exposure" },
-          { name: "namespace.yaml", type: "file", description: "Webapp namespace config" }
+          { name: "health-check.sh", type: "file", description: "Health check script" },
+          { name: "setup-cluster.sh", type: "file", description: "Cluster setup automation" },
+          { name: "trivy-scan.sh", type: "file", description: "Security scanning script" }
         ]
+      },
+      {
+        name: ".dockerignore",
+        type: "file",
+        description: "Docker ignore patterns"
+      },
+      {
+        name: ".gitignore",
+        type: "file",
+        description: "Git ignore patterns"
+      },
+      {
+        name: "Jenkinsfile",
+        type: "file",
+        description: "CI/CD Orchestration script"
       },
       {
         name: "sonar-project.properties",
         type: "file",
-        description: "SonarQube configuration"
+        description: "SonarQube configurations"
       },
       {
-        name: "pom.xml",
+        name: "README.md",
         type: "file",
-        description: "Maven build configuration"
+        description: "Project Documentation"
       }
     ],
     tools: [

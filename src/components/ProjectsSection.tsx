@@ -6,11 +6,11 @@ import { saveScrollPosition } from "@/hooks/useScrollRestoration";
 
 const projects = [
   {
-    title: "Automated Security Scanning Pipeline",
+    title: "Java-DevSecOps-Pipeline-End-to-End",
     description:
       "DevSecOps pipeline that integrates security scanning at every stage. Includes container scanning, SAST, dependency checks, and infrastructure security validation.",
     tools: ["Jenkins", "Java 17", "Spring Boot", "Maven 3", "Trivy", "SonarQube", "Docker", "AWS ECR", "DockerHub", "Nexus", "MicroK8s", "AWS EC2"],
-    github: "https://github.com",
+    github: "https://github.com/tambe-jonathan/java-devsecops-platform-end-to-end.git",
     screenshotSlug: "security-pipeline",
   },
   {
