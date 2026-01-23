@@ -35,28 +35,92 @@ export interface ProjectDesignData {
 export const projectDesigns: ProjectDesignData[] = [
   {
     slug: "security-pipeline",
-    title: "Automated Security Scanning Pipeline",
-    tagline: "DevSecOps pipeline integrating security at every stage",
+    title: "Java-DevSecOps-Pipeline-End-to-End",
+    tagline: "Enterprise-grade DevSecOps pipeline with comprehensive security gates",
     caseStudy: {
-      problem: "Traditional CI/CD pipelines often lack integrated security scanning, leading to vulnerabilities being discovered late in the development cycle—or worse, in production. Manual security reviews create bottlenecks and inconsistent coverage.",
-      solution: "Built an automated DevSecOps pipeline that embeds security scanning at every stage: code analysis with SonarQube, dependency vulnerability scanning, container image scanning with Trivy, and infrastructure security validation—all before deployment.",
-      approach: "Implemented a shift-left security strategy using Jenkins as the orchestration engine. Each commit triggers comprehensive scans across multiple security domains. Quality gates enforce minimum security thresholds, blocking deployments that don't meet standards."
+      problem: "Traditional CI/CD pipelines often lack integrated security scanning, leading to vulnerabilities being discovered late in the development cycle—or worse, in production. Manual security reviews create bottlenecks and inconsistent coverage across code, dependencies, and container images.",
+      solution: "Built a comprehensive 14-stage DevSecOps pipeline that implements shift-left security with multiple quality gates: filesystem scanning with Trivy, static code analysis with SonarQube, container image vulnerability scanning, and automated deployment verification—all enforced before production deployment.",
+      approach: "Implemented Jenkins as the orchestration engine with strict quality gate enforcement. Every commit triggers comprehensive scans across multiple security domains. SonarQube Quality Gate and Trivy CRITICAL vulnerability checks act as policy control points, blocking deployments that don't meet security thresholds. Multi-registry publishing ensures redundancy."
     },
     flowSteps: [
-      { name: "Code Commit", icon: "github", description: "Developer pushes code to GitHub repository" },
-      { name: "Jenkins Build", icon: "jenkins", description: "Jenkins triggers automated pipeline execution" },
-      { name: "Maven Build", icon: "maven", description: "Compile and package Spring Boot application" },
-      { name: "SonarQube Scan", icon: "sonarqube", description: "Static code analysis and quality gate check" },
-      { name: "Docker Build", icon: "docker", description: "Build containerized application image" },
-      { name: "Trivy Scan", icon: "trivy", description: "Container vulnerability scanning" },
-      { name: "Push to Registry", icon: "aws-ecr", description: "Push verified image to ECR/DockerHub" },
-      { name: "Deploy to K8s", icon: "kubernetes", description: "Deploy to MicroK8s cluster" }
+      { 
+        name: "1. Developer Push", 
+        icon: "github", 
+        description: "Developer pushes code to the develop branch. GitHub acts as single source of truth for application and infrastructure code. Jenkins pipeline is triggered automatically." 
+      },
+      { 
+        name: "2. Pipeline Init", 
+        icon: "jenkins", 
+        description: "Jenkins allocates agent. Tools provisioned: JDK 17, Maven 3, Sonar Scanner. Environment variables loaded: App name, AWS account, ECR/DockerHub repos, credentials." 
+      },
+      { 
+        name: "3. Source Checkout", 
+        icon: "github", 
+        description: "Jenkins cleans workspace, authenticates to GitHub using stored credentials, checks out develop branch. Application source code is now available." 
+      },
+      { 
+        name: "4. Build & Unit Test", 
+        icon: "maven", 
+        description: "Maven compiles Java application. Unit tests executed. If compilation or tests fail: ❌ Pipeline stops immediately, failure notification sent." 
+      },
+      { 
+        name: "5. Filesystem Scan", 
+        icon: "trivy", 
+        description: "Trivy scans entire repository filesystem (Shift Left). High and Critical vulnerabilities detected. Non-blocking mode, results logged for auditing." 
+      },
+      { 
+        name: "6. Code Analysis", 
+        icon: "sonarqube", 
+        description: "Jenkins authenticates to SonarQube. Sonar Scanner analyzes: source code quality, bugs, code smells, security vulnerabilities, technical debt. Report sent to server." 
+      },
+      { 
+        name: "7. Quality Gate", 
+        icon: "quality-gate", 
+        description: "Jenkins waits for SonarQube Quality Gate result. If fails: ❌ Pipeline aborts, no artifact produced. If passes: ✅ Pipeline continues to packaging." 
+      },
+      { 
+        name: "8. Artifact Publish", 
+        icon: "nexus", 
+        description: "Maven packages application (tests skipped - already validated). Application artifact (JAR) published to Nexus Repository. Nexus becomes binary source of truth." 
+      },
+      { 
+        name: "9. Docker Build", 
+        icon: "docker", 
+        description: "Jenkins builds Docker image using application artifact and Dockerfile. Image tagged with 'latest' and Jenkins BUILD_NUMBER. Prepared for ECR and DockerHub." 
+      },
+      { 
+        name: "10. Image Security", 
+        icon: "security-gate", 
+        description: "Trivy scans Docker image with blocking policy. If CRITICAL vulnerabilities found: ❌ Pipeline fails, image NOT pushed. If scan passes: ✅ Continue to publish." 
+      },
+      { 
+        name: "11. Multi-Registry Push", 
+        icon: "aws-ecr", 
+        description: "AWS ECR: Authenticate via IAM, push image (latest + BUILD_NUMBER). DockerHub: Authenticate with credentials, push image (latest). Dual registry redundancy." 
+      },
+      { 
+        name: "12. K8s Deploy", 
+        icon: "kubernetes", 
+        description: "Jenkins loads kubeconfig, validates cluster connectivity, ensures namespace 'webapp' exists. Manifests applied, rolling restart triggered, pods recreated with new version." 
+      },
+      { 
+        name: "13. Verification", 
+        icon: "kubernetes", 
+        description: "Jenkins checks pod status and deployment rollout status. Confirms successful application deployment. Validates new version is running correctly." 
+      },
+      { 
+        name: "14. Notifications", 
+        icon: "email", 
+        description: "Always: Workspace cleaned. On Success: Email with build success, build number, deployment confirmation. On Failure: Email with failure reason, suggested fixes, build URL." 
+      }
     ],
     outcomes: [
       { metric: "Vulnerability Detection", value: "95%", description: "CVEs caught before production" },
-      { metric: "Deployment Time", value: "< 15 min", description: "From commit to production" },
-      { metric: "Security Coverage", value: "100%", description: "All code paths scanned" },
-      { metric: "False Positive Rate", value: "< 5%", description: "Minimal noise in alerts" }
+      { metric: "Pipeline Duration", value: "< 15 min", description: "Full build to deployment" },
+      { metric: "Security Coverage", value: "100%", description: "All code paths + images scanned" },
+      { metric: "Quality Gate Pass", value: "< 5%", description: "False positive rate" },
+      { metric: "Rollback Time", value: "< 2 min", description: "Previous version restore" },
+      { metric: "Registry Uptime", value: "99.9%", description: "Dual-registry redundancy" }
     ],
     projectStructure: [
       {
@@ -64,7 +128,7 @@ export const projectDesigns: ProjectDesignData[] = [
         type: "folder",
         description: "Pipeline configurations",
         children: [
-          { name: "Jenkinsfile", type: "file", description: "Main pipeline definition" },
+          { name: "Jenkinsfile", type: "file", description: "Main 14-stage pipeline definition" },
           { name: "jenkins-plugins.txt", type: "file", description: "Required plugins list" }
         ]
       },
@@ -73,8 +137,9 @@ export const projectDesigns: ProjectDesignData[] = [
         type: "folder",
         description: "Spring Boot application source",
         children: [
-          { name: "main/java/", type: "folder", description: "Application code" },
-          { name: "test/java/", type: "folder", description: "Unit and integration tests" }
+          { name: "main/java/", type: "folder", description: "Application code (Java 17)" },
+          { name: "test/java/", type: "folder", description: "Unit and integration tests" },
+          { name: "resources/", type: "folder", description: "Application properties" }
         ]
       },
       {
@@ -92,24 +157,34 @@ export const projectDesigns: ProjectDesignData[] = [
         description: "Kubernetes manifests",
         children: [
           { name: "deployment.yaml", type: "file", description: "Application deployment" },
-          { name: "service.yaml", type: "file", description: "Service exposure" }
+          { name: "service.yaml", type: "file", description: "Service exposure" },
+          { name: "namespace.yaml", type: "file", description: "Webapp namespace config" }
         ]
       },
       {
         name: "sonar-project.properties",
         type: "file",
         description: "SonarQube configuration"
+      },
+      {
+        name: "pom.xml",
+        type: "file",
+        description: "Maven build configuration"
       }
     ],
     tools: [
-      { name: "Jenkins", logo: "jenkins", category: "CI/CD" },
+      { name: "GitHub", logo: "github", category: "Version Control" },
+      { name: "Jenkins", logo: "jenkins", category: "CI/CD Orchestration" },
+      { name: "Java 17", logo: "java", category: "Runtime" },
+      { name: "Maven 3", logo: "maven", category: "Build Tool" },
       { name: "SonarQube", logo: "sonarqube", category: "Code Quality" },
-      { name: "Trivy", logo: "trivy", category: "Security" },
+      { name: "Trivy", logo: "trivy", category: "Security Scanner" },
       { name: "Docker", logo: "docker", category: "Containerization" },
+      { name: "AWS ECR", logo: "aws-ecr", category: "Container Registry" },
+      { name: "DockerHub", logo: "docker-hub", category: "Container Registry" },
+      { name: "Nexus", logo: "nexus", category: "Artifact Storage" },
       { name: "Kubernetes", logo: "kubernetes", category: "Orchestration" },
-      { name: "AWS ECR", logo: "aws-ecr", category: "Registry" },
-      { name: "Maven", logo: "maven", category: "Build" },
-      { name: "Nexus", logo: "nexus", category: "Artifact Storage" }
+      { name: "Spring Boot", logo: "spring-boot", category: "Framework" }
     ]
   },
   {
