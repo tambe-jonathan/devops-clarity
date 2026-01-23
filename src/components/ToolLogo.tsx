@@ -27,7 +27,7 @@ interface ToolConfigItem {
 // Tool logo mapping with colors
 const toolConfig: Record<string, ToolConfigItem> = {
   // Version Control
-  github: { icon: GitBranch, color: "text-foreground", bgColor: "bg-secondary" },
+  github: { color: "text-foreground", bgColor: "bg-secondary", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" },
   git: { icon: FolderGit, color: "text-orange-600", bgColor: "bg-orange-50 dark:bg-orange-900/20" },
   
   // CI/CD
@@ -43,7 +43,7 @@ const toolConfig: Record<string, ToolConfigItem> = {
   
   // Cloud Providers
   aws: { color: "text-orange-500", bgColor: "bg-orange-50 dark:bg-orange-900/20", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" },
-  "aws-ecr": { icon: Database, color: "text-orange-500", bgColor: "bg-orange-50 dark:bg-orange-900/20" },
+  "aws-ecr": { color: "text-orange-500", bgColor: "bg-orange-50 dark:bg-orange-900/20", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/1024px-Amazon_Web_Services_Logo.svg.png" },
   azure: { color: "text-blue-500", bgColor: "bg-blue-50 dark:bg-blue-900/20", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" },
   gcp: { color: "text-blue-400", bgColor: "bg-blue-50 dark:bg-blue-900/20", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" },
   
@@ -60,7 +60,7 @@ const toolConfig: Record<string, ToolConfigItem> = {
   
   // Security & Quality
   sonarqube: { color: "text-blue-500", bgColor: "bg-blue-50 dark:bg-blue-900/20", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sonarqube/sonarqube-original.svg" },
-  trivy: { icon: Shield, color: "text-cyan-600", bgColor: "bg-cyan-50 dark:bg-cyan-900/20" },
+  trivy: { color: "text-cyan-600", bgColor: "bg-cyan-50 dark:bg-cyan-900/20", logo: "https://aquasecurity.github.io/trivy/v0.18.3/imgs/logo.png" },
   
   // Monitoring
   prometheus: { color: "text-orange-600", bgColor: "bg-orange-50 dark:bg-orange-900/20", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prometheus/prometheus-original.svg" },
@@ -70,16 +70,30 @@ const toolConfig: Record<string, ToolConfigItem> = {
   
   // Build Tools
   maven: { color: "text-red-700", bgColor: "bg-red-50 dark:bg-red-900/20", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/maven/maven-original.svg" },
-  nexus: { icon: Database, color: "text-blue-700", bgColor: "bg-blue-50 dark:bg-blue-900/20" },
+  nexus: { color: "text-blue-700", bgColor: "bg-blue-50 dark:bg-blue-900/20", logo: "https://assets-global.website-files.com/5f10ed4c0ebf7f1a21ac7b6d/5f2af61146c55b0e76dc070c_nx-logo-img.svg" },
   
-  // Languages
+  // Languages & Runtimes
+  java: { color: "text-red-600", bgColor: "bg-red-50 dark:bg-red-900/20", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" },
+  jdk: { color: "text-red-600", bgColor: "bg-red-50 dark:bg-red-900/20", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" },
+  "spring-boot": { color: "text-green-600", bgColor: "bg-green-50 dark:bg-green-900/20", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" },
   python: { color: "text-yellow-600", bgColor: "bg-yellow-50 dark:bg-yellow-900/20", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
   jest: { color: "text-red-600", bgColor: "bg-red-50 dark:bg-red-900/20", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jest/jest-plain.svg" },
+  
+  // Communication & Notifications
+  email: { icon: MessageSquare, color: "text-blue-600", bgColor: "bg-blue-50 dark:bg-blue-900/20" },
+  notification: { icon: Bell, color: "text-amber-600", bgColor: "bg-amber-50 dark:bg-amber-900/20" },
+  
+  // Decision Gates
+  "quality-gate": { icon: Shield, color: "text-green-600", bgColor: "bg-green-50 dark:bg-green-900/20" },
+  "security-gate": { icon: Shield, color: "text-red-600", bgColor: "bg-red-50 dark:bg-red-900/20" },
   
   // Others
   webhook: { icon: Webhook, color: "text-muted-foreground", bgColor: "bg-secondary" },
   slack: { color: "text-purple-600", bgColor: "bg-purple-50 dark:bg-purple-900/20", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/slack/slack-original.svg" },
   docs: { icon: FileText, color: "text-muted-foreground", bgColor: "bg-secondary" },
+  developer: { icon: FileCode, color: "text-indigo-600", bgColor: "bg-indigo-50 dark:bg-indigo-900/20" },
+  test: { icon: TestTube, color: "text-green-600", bgColor: "bg-green-50 dark:bg-green-900/20" },
+  workspace: { icon: FolderGit, color: "text-slate-600", bgColor: "bg-slate-50 dark:bg-slate-900/20" },
 };
 
 interface ToolLogoProps {

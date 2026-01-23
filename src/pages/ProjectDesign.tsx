@@ -121,35 +121,83 @@ export default function ProjectDesign() {
                 <GitBranch className="w-5 h-5 text-primary" />
               </div>
               <h2 className="text-2xl font-bold text-foreground">Pipeline Flow</h2>
+              <span className="ml-2 px-3 py-1 bg-accent/20 text-accent rounded-full text-sm font-medium">
+                {project.flowSteps.length} Stages
+              </span>
             </div>
             
-            <div className="bg-card border border-border rounded-xl p-8 overflow-x-auto">
-              <div className="flex items-center gap-2 min-w-max">
-                {project.flowSteps.map((step, index) => (
-                  <div key={index} className="flex items-center">
-                    <div className="flex flex-col items-center group">
-                      <div className="relative">
-                        <ToolLogo tool={step.icon} size="lg" />
-                        <span className="absolute -top-2 -right-2 w-5 h-5 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-xs font-bold">
-                          {index + 1}
-                        </span>
-                      </div>
-                      <div className="mt-3 text-center max-w-[100px]">
-                        <p className="text-sm font-medium text-foreground">{step.name}</p>
-                        <p className="text-xs text-muted-foreground mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          {step.description}
-                        </p>
-                      </div>
-                    </div>
+            <div className="bg-card border border-border rounded-xl p-6 md:p-8">
+              {/* Visual Flow - Vertical for detailed view */}
+              <div className="relative">
+                {/* Connection Line */}
+                <div className="absolute left-6 top-8 bottom-8 w-0.5 bg-gradient-to-b from-primary via-primary/50 to-primary hidden md:block" />
+                
+                <div className="space-y-4">
+                  {project.flowSteps.map((step, index) => {
+                    // Determine step category for color coding
+                    const isSecurityGate = step.icon.includes('gate') || step.icon === 'trivy';
+                    const isSuccess = step.name.includes('Push') || step.name.includes('Deploy') || step.name.includes('Verification');
+                    const isStart = index === 0;
+                    const isEnd = index === project.flowSteps.length - 1;
                     
-                    {index < project.flowSteps.length - 1 && (
-                      <div className="flex items-center px-4 pb-10">
-                        <div className="w-8 h-0.5 bg-gradient-to-r from-primary/50 to-primary"></div>
-                        <ArrowRight className="w-5 h-5 text-primary -ml-1" />
+                    return (
+                      <div 
+                        key={index}
+                        className={`relative flex gap-4 p-4 rounded-xl transition-all duration-300 hover:shadow-md group
+                          ${isSecurityGate ? 'bg-red-50/50 dark:bg-red-900/10 border border-red-200/50 dark:border-red-800/30' : 
+                            isSuccess ? 'bg-green-50/50 dark:bg-green-900/10 border border-green-200/50 dark:border-green-800/30' :
+                            isStart || isEnd ? 'bg-primary/5 border border-primary/20' :
+                            'bg-secondary/30 border border-border hover:border-primary/30'
+                          }`}
+                      >
+                        {/* Step Number & Logo */}
+                        <div className="flex-shrink-0 relative z-10">
+                          <div className="relative">
+                            <ToolLogo tool={step.icon} size="md" />
+                            <span className={`absolute -top-2 -left-2 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shadow-md
+                              ${isSecurityGate ? 'bg-red-500 text-white' : 
+                                isSuccess ? 'bg-green-500 text-white' :
+                                'bg-primary text-primary-foreground'
+                              }`}>
+                              {index + 1}
+                            </span>
+                          </div>
+                        </div>
+                        
+                        {/* Step Content */}
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2 mb-1">
+                            <h3 className="font-semibold text-foreground">
+                              {step.name}
+                            </h3>
+                            {isSecurityGate && (
+                              <span className="px-2 py-0.5 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 text-xs font-medium rounded-full">
+                                Security Gate
+                              </span>
+                            )}
+                            {isSuccess && (
+                              <span className="px-2 py-0.5 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 text-xs font-medium rounded-full">
+                                Success Path
+                              </span>
+                            )}
+                          </div>
+                          <p className="text-sm text-muted-foreground leading-relaxed">
+                            {step.description}
+                          </p>
+                        </div>
+                        
+                        {/* Arrow indicator */}
+                        {index < project.flowSteps.length - 1 && (
+                          <div className="absolute -bottom-4 left-6 z-20 hidden md:flex items-center justify-center">
+                            <div className="w-4 h-4 bg-background border-2 border-primary rounded-full flex items-center justify-center">
+                              <ArrowRight className="w-2 h-2 text-primary rotate-90" />
+                            </div>
+                          </div>
+                        )}
                       </div>
-                    )}
-                  </div>
-                ))}
+                    );
+                  })}
+                </div>
               </div>
             </div>
           </section>
@@ -163,7 +211,7 @@ export default function ProjectDesign() {
               <h2 className="text-2xl font-bold text-foreground">Outcomes & Metrics</h2>
             </div>
             
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {project.outcomes.map((outcome, index) => (
                 <div 
                   key={index}
