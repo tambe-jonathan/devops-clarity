@@ -6,7 +6,7 @@ import {
   Activity, 
   Terminal,
   Shield,
-  Network
+  Database
 } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
@@ -15,49 +15,65 @@ const skillCategories = [
     title: "Cloud Platforms",
     icon: Cloud,
     skills: ["Azure", "AWS"],
-    color: "text-blue-500",
+    gradient: "from-blue-500/10 to-blue-600/5",
+    iconBg: "bg-blue-500/10",
+    iconColor: "text-blue-600",
   },
   {
     title: "DevOps & CI/CD",
     icon: GitBranch,
     skills: ["Azure DevOps", "Jenkins", "GitHub Actions", "Argo CD", "Flux CD", "GitOps"],
-    color: "text-orange-500",
+    gradient: "from-orange-500/10 to-orange-600/5",
+    iconBg: "bg-orange-500/10",
+    iconColor: "text-orange-600",
   },
   {
     title: "Containers & Orchestration",
     icon: Container,
     skills: ["Docker", "Kubernetes", "Helm", "Istio"],
-    color: "text-cyan-500",
+    gradient: "from-cyan-500/10 to-cyan-600/5",
+    iconBg: "bg-cyan-500/10",
+    iconColor: "text-cyan-600",
   },
   {
     title: "Infrastructure as Code",
     icon: FileCode,
     skills: ["Terraform", "Azure Bicep", "ARM Templates", "CloudFormation"],
-    color: "text-emerald-500",
+    gradient: "from-emerald-500/10 to-emerald-600/5",
+    iconBg: "bg-emerald-500/10",
+    iconColor: "text-emerald-600",
   },
   {
     title: "Security & DevSecOps",
     icon: Shield,
     skills: ["IAM/RBAC", "Key Vault", "SonarQube", "Trivy", "Zero Trust"],
-    color: "text-red-500",
+    gradient: "from-red-500/10 to-red-600/5",
+    iconBg: "bg-red-500/10",
+    iconColor: "text-red-600",
   },
   {
     title: "Monitoring & Observability",
     icon: Activity,
     skills: ["Prometheus", "Grafana", "ELK Stack", "Azure Monitor", "CloudWatch"],
-    color: "text-purple-500",
+    gradient: "from-purple-500/10 to-purple-600/5",
+    iconBg: "bg-purple-500/10",
+    iconColor: "text-purple-600",
   },
   {
     title: "Scripting & Automation",
     icon: Terminal,
     skills: ["Bash", "Python", "PowerShell", "Ansible"],
-    color: "text-rose-500",
+    gradient: "from-rose-500/10 to-rose-600/5",
+    iconBg: "bg-rose-500/10",
+    iconColor: "text-rose-600",
   },
   {
     title: "Databases",
-    icon: Network,
+    icon: Database,
     skills: ["PostgreSQL", "MySQL", "MongoDB", "Redis"],
-    color: "text-teal-500",
+    gradient: "from-teal-500/10 to-teal-600/5",
+    iconBg: "bg-teal-500/10",
+    iconColor: "text-teal-600",
   },
 ];
 
@@ -65,7 +81,7 @@ export function SkillsSection() {
   const { ref: sectionRef, isVisible } = useScrollAnimation<HTMLElement>();
 
   return (
-    <section id="skills" ref={sectionRef} className="section-padding">
+    <section id="skills" ref={sectionRef} className="section-padding bg-gradient-to-b from-background to-secondary/30">
       <div className="container-width">
         {/* Section Header */}
         <div 
@@ -86,32 +102,43 @@ export function SkillsSection() {
         </div>
 
         {/* Skills Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
           {skillCategories.map((category, index) => (
             <div
               key={index}
-              className={`bg-card rounded-2xl p-6 border border-border hover:border-accent/30 transition-all duration-500 ease-out hover:shadow-lg hover:-translate-y-1 group ${
+              className={`group relative bg-card rounded-xl p-5 border border-border/50 hover:border-border transition-all duration-500 ease-out hover:shadow-lg hover:shadow-primary/5 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
-              style={{ transitionDelay: `${150 + index * 100}ms` }}
+              style={{ transitionDelay: `${150 + index * 75}ms` }}
             >
-              <div className="flex items-center gap-3 mb-5">
-                <div className={`p-2.5 rounded-lg bg-secondary ${category.color} transition-transform duration-300 group-hover:scale-110`}>
-                  <category.icon className="w-5 h-5" />
+              {/* Subtle gradient overlay on hover */}
+              <div className={`absolute inset-0 rounded-xl bg-gradient-to-br ${category.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+              
+              <div className="relative z-10">
+                {/* Icon and Title */}
+                <div className="flex items-center gap-3 mb-4">
+                  <div className={`p-2.5 rounded-lg ${category.iconBg} ${category.iconColor} transition-transform duration-300 group-hover:scale-110`}>
+                    <category.icon className="w-5 h-5" strokeWidth={1.5} />
+                  </div>
+                  <h3 className="font-semibold text-foreground text-sm md:text-base leading-tight">
+                    {category.title}
+                  </h3>
                 </div>
-                <h3 className="font-semibold text-foreground">
-                  {category.title}
-                </h3>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {category.skills.map((skill, skillIndex) => (
-                  <span
-                    key={skillIndex}
-                    className="skill-badge"
-                  >
-                    {skill}
-                  </span>
-                ))}
+                
+                {/* Skills List */}
+                <div className="space-y-1.5">
+                  {category.skills.map((skill, skillIndex) => (
+                    <div
+                      key={skillIndex}
+                      className="flex items-center gap-2 text-muted-foreground text-sm"
+                    >
+                      <span className={`w-1 h-1 rounded-full ${category.iconBg.replace('/10', '/40')}`} />
+                      <span className="group-hover:text-foreground transition-colors duration-300">
+                        {skill}
+                      </span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           ))}
