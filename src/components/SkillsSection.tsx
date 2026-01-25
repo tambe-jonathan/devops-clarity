@@ -14,52 +14,49 @@ const skillCategories = [
   {
     title: "Cloud Platforms",
     icon: Cloud,
-    skills: [
-      "Azure: AKS, App Services, ACR, Azure DevOps, VMSS, VNET, NSG, Application Gateway, Load Balancers, Azure Monitor, Log Analytics, Azure Functions, Event Grid, Key Vault, Storage Accounts, Azure SQL, Azure AD, Defender for Cloud, Blueprints & Policies",
-      "AWS: EC2, S3, RDS, EKS, Lambda, CloudFormation, CloudWatch, Route 53, IAM, API Gateway, DynamoDB, Auto Scaling, ALB/NLB"
-    ],
+    skills: ["Azure", "AWS"],
     color: "text-blue-500",
   },
   {
     title: "DevOps & CI/CD",
     icon: GitBranch,
-    skills: ["Azure DevOps Pipelines", "Jenkins", "GitHub Actions", "Argo CD", "Flux CD", "Maven", "SonarQube", "Nexus", "Trivy", "Selenium", "GitOps workflows"],
+    skills: ["Azure DevOps", "Jenkins", "GitHub Actions", "Argo CD", "Flux CD", "GitOps"],
     color: "text-orange-500",
   },
   {
     title: "Containers & Orchestration",
     icon: Container,
-    skills: ["Docker", "Kubernetes (AKS & EKS)", "Helm Charts", "Istio (beginner)", "Kubernetes RBAC", "HPA", "Ingress"],
+    skills: ["Docker", "Kubernetes", "Helm", "Istio"],
     color: "text-cyan-500",
   },
   {
-    title: "Infrastructure as Code (IaC)",
+    title: "Infrastructure as Code",
     icon: FileCode,
-    skills: ["Terraform", "Azure Bicep", "ARM Templates", "CloudFormation", "Terraform Cloud & S3 backend management"],
+    skills: ["Terraform", "Azure Bicep", "ARM Templates", "CloudFormation"],
     color: "text-emerald-500",
   },
   {
     title: "Security & DevSecOps",
     icon: Shield,
-    skills: ["Azure Security Center", "IAM/RBAC", "Azure Policies", "Key Vault", "AWS Secrets Manager", "Vulnerability Scanning", "Penetration Testing", "Zero Trust principles"],
+    skills: ["IAM/RBAC", "Key Vault", "SonarQube", "Trivy", "Zero Trust"],
     color: "text-red-500",
   },
   {
     title: "Monitoring & Observability",
     icon: Activity,
-    skills: ["Prometheus", "Grafana", "ELK/EFK Stack", "Azure Monitor", "Application Insights", "CloudWatch"],
+    skills: ["Prometheus", "Grafana", "ELK Stack", "Azure Monitor", "CloudWatch"],
     color: "text-purple-500",
   },
   {
     title: "Scripting & Automation",
     icon: Terminal,
-    skills: ["Bash", "Python", "PowerShell", "YAML", "Ansible"],
+    skills: ["Bash", "Python", "PowerShell", "Ansible"],
     color: "text-rose-500",
   },
   {
-    title: "Networking & Databases",
+    title: "Databases",
     icon: Network,
-    skills: ["TCP/IP", "DNS", "Load Balancing", "VPN", "Firewalls", "MySQL", "PostgreSQL", "MongoDB", "Redis"],
+    skills: ["PostgreSQL", "MySQL", "MongoDB", "Redis"],
     color: "text-teal-500",
   },
 ];
