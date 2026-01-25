@@ -4,7 +4,9 @@ import {
   FileCode, 
   GitBranch, 
   Activity, 
-  Terminal 
+  Terminal,
+  Shield,
+  Network
 } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
@@ -12,38 +14,53 @@ const skillCategories = [
   {
     title: "Cloud Platforms",
     icon: Cloud,
-    skills: ["AWS", "Azure", "GCP"],
+    skills: [
+      "Azure: AKS, App Services, ACR, Azure DevOps, VMSS, VNET, NSG, Application Gateway, Load Balancers, Azure Monitor, Log Analytics, Azure Functions, Event Grid, Key Vault, Storage Accounts, Azure SQL, Azure AD, Defender for Cloud, Blueprints & Policies",
+      "AWS: EC2, S3, RDS, EKS, Lambda, CloudFormation, CloudWatch, Route 53, IAM, API Gateway, DynamoDB, Auto Scaling, ALB/NLB"
+    ],
     color: "text-blue-500",
+  },
+  {
+    title: "DevOps & CI/CD",
+    icon: GitBranch,
+    skills: ["Azure DevOps Pipelines", "Jenkins", "GitHub Actions", "Argo CD", "Flux CD", "Maven", "SonarQube", "Nexus", "Trivy", "Selenium", "GitOps workflows"],
+    color: "text-orange-500",
   },
   {
     title: "Containers & Orchestration",
     icon: Container,
-    skills: ["Docker", "Kubernetes", "Helm"],
+    skills: ["Docker", "Kubernetes (AKS & EKS)", "Helm Charts", "Istio (beginner)", "Kubernetes RBAC", "HPA", "Ingress"],
     color: "text-cyan-500",
   },
   {
-    title: "Infrastructure as Code",
+    title: "Infrastructure as Code (IaC)",
     icon: FileCode,
-    skills: ["Terraform", "Ansible", "CloudFormation"],
+    skills: ["Terraform", "Azure Bicep", "ARM Templates", "CloudFormation", "Terraform Cloud & S3 backend management"],
     color: "text-emerald-500",
   },
   {
-    title: "CI/CD",
-    icon: GitBranch,
-    skills: ["GitHub Actions", "GitLab CI", "Jenkins", "ArgoCD"],
-    color: "text-orange-500",
+    title: "Security & DevSecOps",
+    icon: Shield,
+    skills: ["Azure Security Center", "IAM/RBAC", "Azure Policies", "Key Vault", "AWS Secrets Manager", "Vulnerability Scanning", "Penetration Testing", "Zero Trust principles"],
+    color: "text-red-500",
   },
   {
     title: "Monitoring & Observability",
     icon: Activity,
-    skills: ["Prometheus", "Grafana", "ELK Stack", "CloudWatch"],
+    skills: ["Prometheus", "Grafana", "ELK/EFK Stack", "Azure Monitor", "Application Insights", "CloudWatch"],
     color: "text-purple-500",
   },
   {
     title: "Scripting & Automation",
     icon: Terminal,
-    skills: ["Bash", "Python", "PowerShell"],
+    skills: ["Bash", "Python", "PowerShell", "YAML", "Ansible"],
     color: "text-rose-500",
+  },
+  {
+    title: "Networking & Databases",
+    icon: Network,
+    skills: ["TCP/IP", "DNS", "Load Balancing", "VPN", "Firewalls", "MySQL", "PostgreSQL", "MongoDB", "Redis"],
+    color: "text-teal-500",
   },
 ];
 
