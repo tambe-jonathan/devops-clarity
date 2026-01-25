@@ -7,7 +7,7 @@ import { ProjectsSection } from "@/components/ProjectsSection";
 
 import { CertificationsSection } from "@/components/CertificationsSection";
 import { WorkflowSection } from "@/components/WorkflowSection";
-import { TechStackDiagram } from "@/components/TechStackDiagram";
+
 import { ContactSection } from "@/components/ContactSection";
 import { Footer } from "@/components/Footer";
 import { getScrollPosition, clearScrollPosition } from "@/hooks/useScrollRestoration";
@@ -42,7 +42,6 @@ const Index = () => {
         <ProjectsSection />
         <CertificationsSection />
         <WorkflowSection />
-        <TechStackDiagram />
         <ContactSection />
       </main>
       <Footer />
