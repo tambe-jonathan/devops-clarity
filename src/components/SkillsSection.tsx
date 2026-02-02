@@ -130,10 +130,10 @@ export function SkillsSection() {
                   {category.skills.map((skill, skillIndex) => (
                     <div
                       key={skillIndex}
-                      className="flex items-center gap-2 text-muted-foreground text-sm"
+                      className="flex items-center gap-2 text-muted-foreground text-sm group/skill cursor-default"
                     >
-                      <span className={`w-1 h-1 rounded-full ${category.iconBg.replace('/10', '/40')}`} />
-                      <span className="group-hover:text-foreground transition-colors duration-300">
+                      <span className={`w-1 h-1 rounded-full ${category.iconBg.replace('/10', '/40')} group-hover/skill:scale-150 transition-transform duration-200`} />
+                      <span className="group-hover:text-foreground group-hover/skill:text-foreground group-hover/skill:translate-x-1 transition-all duration-200">
                         {skill}
                       </span>
                     </div>
