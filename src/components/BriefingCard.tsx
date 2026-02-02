@@ -21,6 +21,12 @@ export function BriefingCard({ briefing, onSelect, index, isVisible }: BriefingC
     >
       {/* Thumbnail Area - 16:9 */}
       <div className="relative aspect-video bg-gradient-to-br from-secondary to-muted overflow-hidden">
+        {/* Thumbnail Image */}
+        <img 
+          src={briefing.thumbnail} 
+          alt={briefing.title}
+          className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+        />
         {/* Gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         
