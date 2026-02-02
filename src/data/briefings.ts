@@ -1,3 +1,10 @@
+import k8sClusterRecovery from '@/assets/briefings/k8s-cluster-recovery.jpg';
+import postgresAuroraMigration from '@/assets/briefings/postgres-aurora-migration.jpg';
+import cicdOptimization from '@/assets/briefings/cicd-optimization.jpg';
+import zeroTrustSecurity from '@/assets/briefings/zero-trust-security.jpg';
+import multiRegionScaling from '@/assets/briefings/multi-region-scaling.jpg';
+import observabilityStack from '@/assets/briefings/observability-stack.jpg';
+
 export type SystemState = 'CRITICAL' | 'OPTIMIZATION' | 'MIGRATION' | 'SECURITY' | 'SCALING';
 
 export interface Briefing {
@@ -21,7 +28,7 @@ export const briefings: Briefing[] = [
     slug: 'saturated-k8s-cluster-recovery',
     state: 'CRITICAL',
     title: 'Recovering a Saturated K8s Cluster Under 100k RPM',
-    thumbnail: '/placeholder.svg',
+    thumbnail: k8sClusterRecovery,
     duration: '12m',
     complexity: 'Expert',
     stack: ['AWS', 'Kubernetes', 'Prometheus'],
@@ -37,7 +44,7 @@ export const briefings: Briefing[] = [
     slug: 'zero-downtime-database-migration',
     state: 'MIGRATION',
     title: 'Zero-Downtime PostgreSQL to Aurora Migration',
-    thumbnail: '/placeholder.svg',
+    thumbnail: postgresAuroraMigration,
     duration: '18m',
     complexity: 'High',
     stack: ['AWS', 'PostgreSQL', 'Terraform'],
@@ -53,7 +60,7 @@ export const briefings: Briefing[] = [
     slug: 'cicd-pipeline-optimization',
     state: 'OPTIMIZATION',
     title: 'Reducing CI/CD Pipeline Time from 45min to 8min',
-    thumbnail: '/placeholder.svg',
+    thumbnail: cicdOptimization,
     duration: '15m',
     complexity: 'Medium',
     stack: ['Jenkins', 'Docker', 'GitHub Actions'],
@@ -69,7 +76,7 @@ export const briefings: Briefing[] = [
     slug: 'security-breach-remediation',
     state: 'SECURITY',
     title: 'Implementing Zero-Trust After Security Incident',
-    thumbnail: '/placeholder.svg',
+    thumbnail: zeroTrustSecurity,
     duration: '22m',
     complexity: 'Expert',
     stack: ['Azure', 'Terraform', 'Vault'],
@@ -85,7 +92,7 @@ export const briefings: Briefing[] = [
     slug: 'multi-region-scaling',
     state: 'SCALING',
     title: 'Scaling to Multi-Region for Global Expansion',
-    thumbnail: '/placeholder.svg',
+    thumbnail: multiRegionScaling,
     duration: '20m',
     complexity: 'High',
     stack: ['AWS', 'Kubernetes', 'Terraform'],
@@ -101,7 +108,7 @@ export const briefings: Briefing[] = [
     slug: 'observability-stack-implementation',
     state: 'OPTIMIZATION',
     title: 'Building Enterprise Observability from Scratch',
-    thumbnail: '/placeholder.svg',
+    thumbnail: observabilityStack,
     duration: '16m',
     complexity: 'Medium',
     stack: ['Prometheus', 'Grafana', 'ELK'],
