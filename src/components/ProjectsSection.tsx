@@ -59,7 +59,7 @@ export function ProjectsSection() {
   const { ref: sectionRef, isVisible } = useScrollAnimation<HTMLElement>();
 
   return (
-    <section id="projects" ref={sectionRef} className="section-padding bg-card">
+    <section id="case-studies" ref={sectionRef} className="section-padding bg-card">
       <div className="container-width">
         {/* Section Header */}
         <div 
@@ -71,7 +71,7 @@ export function ProjectsSection() {
             Featured Work
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2">
-            Projects & Case Studies
+            Case Studies
           </h2>
           <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
             Real-world DevOps solutions demonstrating infrastructure automation,

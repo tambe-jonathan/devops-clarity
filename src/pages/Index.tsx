@@ -4,10 +4,9 @@ import { HeroSection } from "@/components/HeroSection";
 import { AboutSection } from "@/components/AboutSection";
 import { SkillsSection } from "@/components/SkillsSection";
 import { ProjectsSection } from "@/components/ProjectsSection";
-
+import { BriefingVaultSection } from "@/components/BriefingVaultSection";
 import { CertificationsSection } from "@/components/CertificationsSection";
 import { WorkflowSection } from "@/components/WorkflowSection";
-
 import { ContactSection } from "@/components/ContactSection";
 import { Footer } from "@/components/Footer";
 import { getScrollPosition, clearScrollPosition } from "@/hooks/useScrollRestoration";
@@ -40,6 +39,7 @@ const Index = () => {
         <AboutSection />
         <SkillsSection />
         <ProjectsSection />
+        <BriefingVaultSection />
         <CertificationsSection />
         <WorkflowSection />
         <ContactSection />

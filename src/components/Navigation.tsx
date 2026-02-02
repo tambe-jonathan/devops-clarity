@@ -5,7 +5,8 @@ import { Button } from "@/components/ui/button";
 const navLinks = [
   { href: "#about", label: "About" },
   { href: "#skills", label: "Skills" },
-  { href: "#projects", label: "Projects" },
+  { href: "#case-studies", label: "Case Studies" },
+  { href: "#briefings", label: "Technical Briefings" },
   { href: "#certifications", label: "Certifications" },
 ];
 
@@ -150,7 +151,7 @@ export function Navigation() {
             </button>
 
             <Button variant="hero" size="sm" asChild>
-              <a href="#contact">Get in Touch</a>
+              <a href="#contact">Consultation</a>
             </Button>
           </div>
 
@@ -206,7 +207,7 @@ export function Navigation() {
               </a>
               <Button variant="hero" size="default" asChild className="mt-2">
                 <a href="#contact" onClick={() => setIsMobileMenuOpen(false)}>
-                  Get in Touch
+                  Consultation
                 </a>
               </Button>
             </div>
