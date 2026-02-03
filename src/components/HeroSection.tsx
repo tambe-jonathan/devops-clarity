@@ -75,8 +75,8 @@ export function HeroSection() {
             style={{ animationDelay: "0.48s" }}
           >
             <Button variant="hero" size="xl" asChild>
-              <a href="#projects">
-                View My Projects
+              <a href="#case-studies">
+                View Case Studies
                 <ArrowRight className="ml-2" size={18} />
               </a>
             </Button>
