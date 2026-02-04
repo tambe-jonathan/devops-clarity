@@ -156,12 +156,6 @@ export default function BriefingTheater() {
                   Download Architecture PDF
                 </Button>
               )}
-              <Button variant="outline" className="gap-2" asChild>
-                <a href="#contact">
-                  <Calendar className="w-4 h-4" />
-                  Book Strategy Session
-                </a>
-              </Button>
             </div>
 
             {/* Chapters Accordion - Mobile Visible */}
@@ -255,43 +249,9 @@ export default function BriefingTheater() {
               />
             </div>
 
-            {/* CTA Card */}
-            <div className="rounded-xl border border-primary/20 bg-gradient-to-br from-primary/5 to-accent/5 p-6">
-              <h3 className="text-lg font-semibold text-foreground mb-2">
-                Need This Implemented?
-              </h3>
-              <p className="text-muted-foreground text-sm mb-4">
-                Facing a similar architectural challenge? Let's discuss your infrastructure strategy.
-              </p>
-              <Button variant="hero" className="w-full gap-2" asChild>
-                <a href="#contact">
-                  <Calendar className="w-4 h-4" />
-                  Book a Strategy Session
-                </a>
-              </Button>
-            </div>
           </aside>
         </div>
 
-        {/* Bottom CTA Banner */}
-        <div className="mt-16 rounded-2xl border border-primary/20 bg-gradient-to-r from-primary/5 via-primary/10 to-accent/5 p-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="text-center md:text-left">
-              <h3 className="text-xl font-bold text-foreground mb-2">
-                Ready to solve your infrastructure challenges?
-              </h3>
-              <p className="text-muted-foreground">
-                Let's discuss your architecture and build a roadmap to success.
-              </p>
-            </div>
-            <Button variant="hero" size="lg" asChild className="shrink-0 gap-2">
-              <a href="#contact">
-                <Calendar className="w-4 h-4" />
-                Book a Strategy Session
-              </a>
-            </Button>
-          </div>
-        </div>
 
         {/* Back Navigation */}
         <div className="mt-8">
