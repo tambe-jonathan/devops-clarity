@@ -2,7 +2,6 @@ import { Github, ExternalLink, Palette, Images } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { saveScrollPosition } from "@/hooks/useScrollRestoration";
 
 const projects = [
   {
@@ -126,20 +125,14 @@ export function ProjectsSection() {
                     View Code
                   </Button>
                 </a>
-                <Link 
-                  to={`/project/${project.screenshotSlug}/design`}
-                  onClick={() => saveScrollPosition()}
-                >
+                <Link to={`/project/${project.screenshotSlug}/design`}>
                   <Button variant="ghost" size="sm" className="transition-all duration-300 hover:scale-105">
                     <Palette className="w-4 h-4 mr-2" />
                     Design
                   </Button>
                 </Link>
                 {project.screenshotSlug && (
-                  <Link 
-                    to={`/project/${project.screenshotSlug}/screenshots`} 
-                    onClick={() => saveScrollPosition()}
-                  >
+                  <Link to={`/project/${project.screenshotSlug}/screenshots`}>
                     <Button variant="ghost" size="sm" className="transition-all duration-300 hover:scale-105">
                       <Images className="w-4 h-4 mr-2" />
                       View Execution
