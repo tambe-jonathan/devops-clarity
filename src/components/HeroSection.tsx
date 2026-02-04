@@ -22,57 +22,34 @@ export function HeroSection() {
 
       <div className="container-width pt-20">
         <div className="max-w-4xl mx-auto text-center">
-          {/* Badge */}
-          <div 
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-muted/60 border border-border/50 text-muted-foreground text-sm font-medium mb-8 opacity-0 hero-animate"
+          {/* Headline */}
+          <h1 
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 opacity-0 hero-animate"
             style={{ animationDelay: "0.1s" }}
           >
-            Open to remote roles, consulting, and DevOps architecture projects
-          </div>
-
-          {/* Name - reduced by ~12% */}
-          <h1 
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 opacity-0 hero-animate"
-            style={{ animationDelay: "0.15s" }}
-          >
-            Jonathan
+            I Build <span className="text-primary">Infrastructure That Scales</span>
           </h1>
 
-          {/* Title - increased emphasis */}
+          {/* Supporting Line */}
           <p 
-            className="text-xl sm:text-2xl md:text-3xl text-foreground font-semibold mb-3 opacity-0 hero-animate tracking-wide"
-            style={{ animationDelay: "0.25s" }}
+            className="text-lg sm:text-xl text-muted-foreground mb-4 opacity-0 hero-animate"
+            style={{ animationDelay: "0.2s" }}
           >
-            DevOps Engineer{" "}
-            <span className="text-primary/60">|</span>{" "}
-            <span className="text-primary">Cloud</span>{" "}
-            <span className="text-primary/60">|</span>{" "}
-            <span className="text-primary">Automation</span>{" "}
-            <span className="text-primary/60">|</span>{" "}
-            <span className="text-primary">CI/CD</span>
+            DevOps Engineer specializing in cloud automation, CI/CD, and Kubernetes.
           </p>
 
-          {/* Credibility line */}
+          {/* Micro-proof */}
           <p 
-            className="text-base sm:text-lg text-muted-foreground font-normal mb-8 opacity-0 hero-animate"
-            style={{ animationDelay: "0.32s" }}
+            className="text-sm text-muted-foreground/80 mb-10 opacity-0 hero-animate"
+            style={{ animationDelay: "0.3s" }}
           >
-            Nearly 4 years building cloud infrastructure, CI/CD pipelines, and automation for production systems.
-          </p>
-
-          {/* Value Statement */}
-          <p 
-            className="text-xl sm:text-2xl md:text-3xl text-foreground font-light max-w-2xl mx-auto mb-10 opacity-0 hero-animate"
-            style={{ animationDelay: "0.4s" }}
-          >
-            I design <span className="text-primary font-medium">reliable</span>, 
-            <span className="text-primary font-medium"> automated</span> systems that scale.
+            4 years · Azure & AWS · Production systems
           </p>
 
           {/* CTA Buttons */}
           <div 
             className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 opacity-0 hero-animate"
-            style={{ animationDelay: "0.48s" }}
+            style={{ animationDelay: "0.4s" }}
           >
             <Button variant="hero" size="xl" asChild>
               <a href="#case-studies">
@@ -89,7 +66,7 @@ export function HeroSection() {
           <TooltipProvider delayDuration={100}>
             <div 
               className="flex items-center justify-center gap-4 opacity-0 hero-animate"
-              style={{ animationDelay: "0.55s" }}
+              style={{ animationDelay: "0.5s" }}
             >
               <Tooltip>
                 <TooltipTrigger asChild>

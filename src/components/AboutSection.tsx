@@ -60,23 +60,34 @@ export function AboutSection() {
               {/* Text Content */}
               <div className="flex-1 text-center lg:text-left">
                 <p 
-                  className={`text-lg md:text-xl text-muted-foreground leading-relaxed mb-6 transition-all duration-700 ease-out delay-400 ${
+                  className={`text-lg md:text-xl text-foreground font-medium mb-4 transition-all duration-700 ease-out delay-400 ${
                     isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                   }`}
                 >
-                  I design and operate{" "}
-                  <span className="text-foreground font-medium">production-grade infrastructure</span>{" "}
-                  that reduces deployment risk, improves system uptime, and scales with confidence.
+                  Production-grade infrastructure that scales.
                 </p>
-                <p 
-                  className={`text-lg md:text-xl text-muted-foreground leading-relaxed transition-all duration-700 ease-out delay-500 ${
+                <ul 
+                  className={`space-y-2 text-muted-foreground transition-all duration-700 ease-out delay-500 ${
                     isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                   }`}
                 >
-                  My work spans CI/CD pipelines, container orchestration, infrastructure automation, 
-                  and observability — always with a focus on operational reliability and minimizing 
-                  incident response time for real workloads.
-                </p>
+                  <li className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                    CI/CD pipelines & GitOps workflows
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                    Kubernetes & container orchestration
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                    Infrastructure as Code (Terraform, Bicep)
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                    Observability & incident response
+                  </li>
+                </ul>
               </div>
             </div>
 
