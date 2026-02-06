@@ -1,7 +1,6 @@
 import { Play, Clock, Gauge } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Briefing, stateColors } from "@/data/briefings";
-import { ToolLogo } from "./ToolLogo";
 
 interface BriefingCardProps {
   briefing: Briefing;
@@ -29,30 +28,19 @@ export function BriefingCard({ briefing, index, isVisible }: BriefingCardProps) 
           className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
         
-        {/* Tech Stack Overlay - Shows on Hover */}
-        <div className="absolute inset-0 bg-gradient-to-t from-foreground/90 via-foreground/60 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end p-4">
-          <div className="space-y-3">
-            <div className="flex items-center gap-2">
-              <span className="text-xs font-medium text-background/70 uppercase tracking-wider">Tech Stack</span>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {briefing.stack.map((tool) => (
-                <div 
-                  key={tool}
-                  className="flex items-center gap-1.5 px-2 py-1 bg-background/10 backdrop-blur-sm rounded-md border border-background/20"
-                >
-                  <ToolLogo tool={tool} className="w-4 h-4" />
-                  <span className="text-xs font-medium text-background">{tool}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-        
-        {/* Play button overlay - default state */}
-        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <div className="w-16 h-16 rounded-full bg-primary/90 flex items-center justify-center shadow-2xl transform scale-90 group-hover:scale-100 transition-transform duration-300">
-            <Play className="w-7 h-7 text-primary-foreground ml-1" fill="currentColor" />
+        {/* Impact Tagline Overlay - Shows on Hover */}
+        <div className="absolute inset-0 bg-gradient-to-t from-foreground/95 via-foreground/70 to-foreground/30 opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col items-center justify-center p-6 text-center">
+          {/* Impact Text */}
+          <span className="text-background/80 text-xs font-semibold uppercase tracking-widest mb-2">
+            Key Impact
+          </span>
+          <h4 className="text-background text-lg md:text-xl font-bold leading-tight max-w-[90%]">
+            {briefing.impactTagline}
+          </h4>
+          
+          {/* Play Button */}
+          <div className="mt-4 w-14 h-14 rounded-full bg-primary flex items-center justify-center shadow-2xl transform scale-90 group-hover:scale-100 transition-transform duration-300">
+            <Play className="w-6 h-6 text-primary-foreground ml-0.5" fill="currentColor" />
           </div>
         </div>
         
@@ -64,7 +52,7 @@ export function BriefingCard({ briefing, index, isVisible }: BriefingCardProps) 
         </div>
         
         {/* Duration Badge */}
-        <div className="absolute bottom-3 right-3">
+        <div className="absolute bottom-3 right-3 group-hover:opacity-0 transition-opacity duration-300">
           <span className="inline-flex items-center gap-1 px-2 py-1 rounded bg-foreground/80 text-background text-xs font-medium">
             <Clock className="w-3 h-3" />
             {briefing.duration}

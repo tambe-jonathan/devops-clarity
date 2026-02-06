@@ -34,6 +34,7 @@ export interface Briefing {
   youtubeId?: string;
   chapters: BriefingChapter[];
   downloadPdf?: string;
+  impactTagline: string;
 }
 
 export const briefings: Briefing[] = [
@@ -54,6 +55,7 @@ export const briefings: Briefing[] = [
       'Zero downtime recovery achieved'
     ],
     youtubeId: 'dQw4w9WgXcQ',
+    impactTagline: 'How I Reduced Latency by 40% During a Crisis',
     chapters: [
       {
         title: 'The Incident',
@@ -117,6 +119,7 @@ spec:
       'Cut infrastructure costs by 35%'
     ],
     youtubeId: 'dQw4w9WgXcQ',
+    impactTagline: 'How I Migrated 2TB with Zero Downtime',
     chapters: [
       {
         title: 'The Challenge',
@@ -167,6 +170,7 @@ spec:
       'Build costs reduced by 50%'
     ],
     youtubeId: 'dQw4w9WgXcQ',
+    impactTagline: 'How I Reduced Deployment Time by 82%',
     chapters: [
       {
         title: 'Pipeline Analysis',
@@ -227,6 +231,7 @@ steps:
       'Reduced attack surface by 75%'
     ],
     youtubeId: 'dQw4w9WgXcQ',
+    impactTagline: 'How I Reduced Attack Surface by 75%',
     chapters: [
       {
         title: 'The Breach',
@@ -291,6 +296,7 @@ vault write production/config/postgres \\
       'Maintained 99.99% availability during expansion'
     ],
     youtubeId: 'dQw4w9WgXcQ',
+    impactTagline: 'How I Reduced APAC Latency by 70%',
     chapters: [
       {
         title: 'Global Requirements',
@@ -351,6 +357,7 @@ vault write production/config/postgres \\
       'Created executive dashboards for SLA tracking'
     ],
     youtubeId: 'dQw4w9WgXcQ',
+    impactTagline: 'How I Cut Incident Detection to 2 Minutes',
     chapters: [
       {
         title: 'The Visibility Problem',
