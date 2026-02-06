@@ -1,12 +1,18 @@
 import { useState, useEffect, useRef } from "react";
-import { Menu, X, Moon, Sun } from "lucide-react";
+import { Menu, X, Moon, Sun, ChevronDown, Eye, Download } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const navLinks = [
-  { href: "#about", label: "About" },
   { href: "#case-studies", label: "Case Studies" },
-  { href: "#skills", label: "Skills" },
   { href: "#briefings", label: "Briefings" },
+  { href: "#skills", label: "Skills" },
   { href: "#certifications", label: "Certifications" },
 ];
 
@@ -128,14 +134,27 @@ export function Navigation() {
                 {link.label}
               </a>
             ))}
-            <a
-              href={RESUME_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="nav-link text-muted-foreground hover:text-foreground"
-            >
-              Resume
-            </a>
+            {/* Resume Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger className="nav-link text-muted-foreground hover:text-foreground flex items-center gap-1 outline-none">
+                Resume
+                <ChevronDown className="w-3 h-3" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-48 bg-background border border-border">
+                <DropdownMenuItem asChild>
+                  <Link to="/resume" className="flex items-center gap-2 cursor-pointer">
+                    <Eye className="w-4 h-4" />
+                    View My Resume
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <a href={RESUME_URL} download className="flex items-center gap-2 cursor-pointer">
+                    <Download className="w-4 h-4" />
+                    Download Resume
+                  </a>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
             
             {/* Dark Mode Toggle */}
             <button
@@ -196,15 +215,26 @@ export function Navigation() {
                   {link.label}
                 </a>
               ))}
-              <a
-                href={RESUME_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="nav-link py-2 text-muted-foreground"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Resume
-              </a>
+              {/* Mobile Resume Links */}
+              <div className="border-t border-border pt-2 mt-2">
+                <Link
+                  to="/resume"
+                  className="nav-link py-2 flex items-center gap-2 text-muted-foreground"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <Eye className="w-4 h-4" />
+                  View My Resume
+                </Link>
+                <a
+                  href={RESUME_URL}
+                  download
+                  className="nav-link py-2 flex items-center gap-2 text-muted-foreground"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <Download className="w-4 h-4" />
+                  Download Resume
+                </a>
+              </div>
               <Button variant="hero" size="default" asChild className="mt-2">
                 <a href="#contact" onClick={() => setIsMobileMenuOpen(false)}>
                   Consultation
