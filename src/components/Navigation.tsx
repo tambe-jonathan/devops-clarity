@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 const navLinks = [
+  { href: "#about", label: "About" },
   { href: "#case-studies", label: "Case Studies" },
   { href: "#briefings", label: "Briefings" },
   { href: "#skills", label: "Skills" },
