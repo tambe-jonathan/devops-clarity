@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Menu, X, Moon, Sun, ChevronDown, Eye, Download } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -26,12 +26,16 @@ export function Navigation() {
   const [activeSection, setActiveSection] = useState("");
   const [highlightStyle, setHighlightStyle] = useState({ left: 0, width: 0, opacity: 0 });
   const navRef = useRef<HTMLDivElement>(null);
+  const location = useLocation();
+
+  const isHomePage = location.pathname === "/";
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
       
-      // Determine active section based on scroll position
+      if (!isHomePage) return;
+
       const sections = navLinks.map(link => link.href.replace('#', ''));
       let currentSection = '';
       
@@ -50,11 +54,10 @@ export function Navigation() {
     };
     
     window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Initial check
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isHomePage]);
 
-  // Update highlighter position when active section changes
   useEffect(() => {
     if (!navRef.current || !activeSection) {
       setHighlightStyle(prev => ({ ...prev, opacity: 0 }));
@@ -75,7 +78,6 @@ export function Navigation() {
   }, [activeSection]);
 
   useEffect(() => {
-    // Check for saved preference or system preference
     const savedTheme = localStorage.getItem("theme");
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
     
@@ -96,6 +98,12 @@ export function Navigation() {
     }
   };
 
+  // Build nav link href: if not on homepage, prefix with /
+  const getNavHref = (href: string) => {
+    if (isHomePage) return href;
+    return `/${href}`;
+  };
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -107,12 +115,12 @@ export function Navigation() {
       <nav className="container-width">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <a href="#" className="text-xl font-semibold text-foreground tracking-tight">
+          <Link to="/" className="text-xl font-semibold text-foreground tracking-tight shrink-0">
             Jonathan<span className="text-primary">.dev</span>
-          </a>
+          </Link>
 
-          {/* Desktop Navigation */}
-          <div ref={navRef} className="hidden md:flex items-center gap-8 relative">
+          {/* Desktop Navigation - hidden below lg (1024px) */}
+          <div ref={navRef} className="hidden lg:flex items-center gap-5 xl:gap-7 relative">
             {/* Smooth highlight indicator */}
             <div 
               className="absolute bottom-0 h-0.5 bg-primary rounded-full transition-all duration-300 ease-out"
@@ -125,8 +133,8 @@ export function Navigation() {
             {navLinks.map((link) => (
               <a 
                 key={link.href} 
-                href={link.href} 
-                className={`nav-link transition-colors duration-200 ${
+                href={getNavHref(link.href)} 
+                className={`nav-link transition-colors duration-200 text-sm whitespace-nowrap ${
                   activeSection === link.href.replace('#', '') 
                     ? 'text-foreground font-medium' 
                     : ''
@@ -137,7 +145,7 @@ export function Navigation() {
             ))}
             {/* Resume Dropdown */}
             <DropdownMenu>
-              <DropdownMenuTrigger className="nav-link text-muted-foreground hover:text-foreground flex items-center gap-1 outline-none">
+              <DropdownMenuTrigger className="nav-link text-sm text-muted-foreground hover:text-foreground flex items-center gap-1 outline-none whitespace-nowrap">
                 Resume
                 <ChevronDown className="w-3 h-3" />
               </DropdownMenuTrigger>
@@ -171,12 +179,12 @@ export function Navigation() {
             </button>
 
             <Button variant="hero" size="sm" asChild>
-              <a href="#contact">Consultation</a>
+              <a href={isHomePage ? "#contact" : "/#contact"} className="whitespace-nowrap">Consultation</a>
             </Button>
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center gap-2">
+          {/* Mobile/Tablet Menu Button - visible below lg */}
+          <div className="lg:hidden flex items-center gap-2">
             <button
               onClick={toggleDarkMode}
               className="p-2 rounded-lg bg-muted hover:bg-muted/80 transition-all duration-300"
@@ -198,14 +206,14 @@ export function Navigation() {
           </div>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile/Tablet Navigation */}
         {isMobileMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 right-0 bg-background border-b border-border shadow-lg animate-fade-in">
+          <div className="lg:hidden absolute top-full left-0 right-0 bg-background border-b border-border shadow-lg animate-fade-in">
             <div className="flex flex-col py-4 px-6 gap-4">
               {navLinks.map((link) => (
                 <a
                   key={link.href}
-                  href={link.href}
+                  href={getNavHref(link.href)}
                   className={`nav-link py-2 ${
                     activeSection === link.href.replace('#', '') 
                       ? 'text-foreground font-medium border-l-2 border-primary pl-3' 
@@ -237,7 +245,7 @@ export function Navigation() {
                 </a>
               </div>
               <Button variant="hero" size="default" asChild className="mt-2">
-                <a href="#contact" onClick={() => setIsMobileMenuOpen(false)}>
+                <a href={isHomePage ? "#contact" : "/#contact"} onClick={() => setIsMobileMenuOpen(false)}>
                   Consultation
                 </a>
               </Button>
