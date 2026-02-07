@@ -1,5 +1,5 @@
 import { useParams, useNavigate, Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { 
   ArrowLeft, 
   ExternalLink, 
@@ -32,9 +32,7 @@ export default function BriefingTheater() {
 
   const briefing = briefings.find((b) => b.slug === slug);
 
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'instant' });
-  }, [slug]);
+  // Scroll restoration is handled globally in App.tsx
 
   if (!briefing) {
     return (

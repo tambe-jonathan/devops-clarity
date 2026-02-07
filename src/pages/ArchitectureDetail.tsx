@@ -1,5 +1,4 @@
 import { useParams, useNavigate, Link } from "react-router-dom";
-import { useEffect } from "react";
 import { ArrowLeft, Layers, Lightbulb, Cog, Wrench, Scale } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Breadcrumb } from "@/components/Breadcrumb";
@@ -12,9 +11,7 @@ export default function ArchitectureDetail() {
   const navigate = useNavigate();
   const architecture = slug ? getArchitectureBySlug(slug) : undefined;
 
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'instant' });
-  }, []);
+  // Scroll restoration is handled globally in App.tsx
 
   const handleReturnToPortfolio = () => {
     sessionStorage.setItem('restore_scroll', 'true');
