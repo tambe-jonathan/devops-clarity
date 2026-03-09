@@ -3,23 +3,36 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 // Import certification logos
 import awsSapLogo from "@/assets/certs/aws-sap.png";
+import awsDevopsLogo from "@/assets/certs/aws-devops.png";
 import azureAdminLogo from "@/assets/certs/azure-admin.png";
-import ckaLogo from "@/assets/certs/cka.png";
-import azureSolutionsArchitectLogo from "@/assets/certs/azure-solutions-architect.png";
 
 const certifications = [
   {
-    name: "AWS Solutions Architect – Professional",
+    name: "AWS Solutions Architect – Associate",
     issuer: "Amazon Web Services",
-    description: "Designing distributed systems and enterprise deployments on AWS",
-    impact: "Applied in production environments managing multi-region workloads",
+    description: "Designing resilient, high-performing architectures on AWS",
+    impact: "Applied in production environments managing cloud-native workloads",
     logo: awsSapLogo,
     accentColor: "from-orange-500 to-amber-500",
     glowColor: "shadow-orange-500/20",
     borderHover: "hover:border-orange-400/50",
     issued: "March 2023",
     expires: "March 2026",
-    credentialId: "AWS-SAP-2023",
+    credentialId: "AWS-SAA-2023",
+    verifyUrl: "https://www.credly.com/badges/verify",
+  },
+  {
+    name: "AWS DevOps Engineer – Professional",
+    issuer: "Amazon Web Services",
+    description: "CI/CD, monitoring, logging, and security automation on AWS",
+    impact: "Implemented production-grade pipelines and infrastructure automation",
+    logo: awsDevopsLogo,
+    accentColor: "from-orange-600 to-yellow-500",
+    glowColor: "shadow-orange-600/20",
+    borderHover: "hover:border-orange-500/50",
+    issued: "June 2023",
+    expires: "June 2026",
+    credentialId: "AWS-DOP-2023",
     verifyUrl: "https://www.credly.com/badges/verify",
   },
   {
@@ -34,34 +47,6 @@ const certifications = [
     issued: "January 2023",
     expires: "January 2026",
     credentialId: "AZ-104",
-    verifyUrl: "https://learn.microsoft.com/en-us/users/",
-  },
-  {
-    name: "Certified Kubernetes Administrator",
-    issuer: "CNCF",
-    description: "Cluster administration, networking, storage, and security at scale",
-    impact: "Operating production Kubernetes clusters serving enterprise workloads",
-    logo: ckaLogo,
-    accentColor: "from-blue-600 to-indigo-600",
-    glowColor: "shadow-blue-600/20",
-    borderHover: "hover:border-blue-500/50",
-    issued: "June 2022",
-    expires: "June 2025",
-    credentialId: "CKA-2200-006789",
-    verifyUrl: "https://www.credly.com/badges/verify",
-  },
-  {
-    name: "Azure Solutions Architect Expert",
-    issuer: "Microsoft",
-    description: "Designing and implementing Azure infrastructure and solutions",
-    impact: "Architected enterprise-scale Azure landing zones for production workloads",
-    logo: azureSolutionsArchitectLogo,
-    accentColor: "from-blue-500 to-purple-500",
-    glowColor: "shadow-purple-500/20",
-    borderHover: "hover:border-purple-400/50",
-    issued: "March 2023",
-    expires: "March 2025",
-    credentialId: "AZ-305-2023",
     verifyUrl: "https://learn.microsoft.com/en-us/users/",
   },
 ];
@@ -92,7 +77,7 @@ export function CertificationsSection() {
         </div>
 
         {/* Certifications Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {certifications.map((cert, index) => (
             <div 
               key={index} 
