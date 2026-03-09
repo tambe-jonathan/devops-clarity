@@ -67,24 +67,24 @@ export function AboutSection() {
                   Production-grade infrastructure that scales.
                 </p>
                 <ul 
-                  className={`space-y-2 text-muted-foreground transition-all duration-700 ease-out delay-500 ${
+                  className={`space-y-2 text-muted-foreground inline-flex flex-col items-start mx-auto lg:mx-0 transition-all duration-700 ease-out delay-500 ${
                     isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                   }`}
                 >
-                  <li className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
                     CI/CD pipelines & GitOps workflows
                   </li>
-                  <li className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
                     Kubernetes & container orchestration
                   </li>
-                  <li className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
                     Infrastructure as Code (Terraform, Bicep)
                   </li>
-                  <li className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
                     Observability & incident response
                   </li>
                 </ul>
