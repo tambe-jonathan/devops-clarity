@@ -77,7 +77,7 @@ export function CertificationsSection() {
         </div>
 
         {/* Certifications Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {certifications.map((cert, index) => (
             <div 
               key={index} 
