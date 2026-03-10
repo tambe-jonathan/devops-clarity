@@ -25,34 +25,34 @@ export function BriefingCard({ briefing, index, isVisible }: BriefingCardProps) 
         <img 
           src={briefing.thumbnail} 
           alt={briefing.title}
+          loading="lazy"
           className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
         
         {/* Impact Tagline Overlay - Shows on Hover */}
-        <div className="absolute inset-0 bg-gradient-to-t from-foreground/95 via-foreground/70 to-foreground/30 opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col items-center justify-center p-6 text-center">
-          {/* Impact Text */}
+        <div className="absolute inset-0 bg-gradient-to-t from-foreground/95 via-foreground/70 to-foreground/30 opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col items-center justify-center p-4 sm:p-6 text-center">
           <span className="text-background/80 text-xs font-semibold uppercase tracking-widest mb-2">
             Key Impact
           </span>
-          <h4 className="text-background text-lg md:text-xl font-bold leading-tight max-w-[90%]">
+          <h4 className="text-background text-base sm:text-lg md:text-xl font-bold leading-tight max-w-[90%]">
             {briefing.impactTagline}
           </h4>
           
           {/* Play Button */}
-          <div className="mt-4 w-14 h-14 rounded-full bg-primary flex items-center justify-center shadow-2xl transform scale-90 group-hover:scale-100 transition-transform duration-300">
-            <Play className="w-6 h-6 text-primary-foreground ml-0.5" fill="currentColor" />
+          <div className="mt-4 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-primary flex items-center justify-center shadow-2xl transform scale-90 group-hover:scale-100 transition-transform duration-300">
+            <Play className="w-5 h-5 sm:w-6 sm:h-6 text-primary-foreground ml-0.5" fill="currentColor" />
           </div>
         </div>
         
         {/* State Badge */}
-        <div className="absolute top-3 left-3">
+        <div className="absolute top-2 left-2 sm:top-3 sm:left-3">
           <span className={`inline-flex items-center px-2 py-1 rounded text-xs font-bold ${colors.bg} ${colors.text} ${colors.border} border backdrop-blur-sm`}>
             [{briefing.state}]
           </span>
         </div>
         
         {/* Duration Badge */}
-        <div className="absolute bottom-3 right-3 group-hover:opacity-0 transition-opacity duration-300">
+        <div className="absolute bottom-2 right-2 sm:bottom-3 sm:right-3 group-hover:opacity-0 transition-opacity duration-300">
           <span className="inline-flex items-center gap-1 px-2 py-1 rounded bg-foreground/80 text-background text-xs font-medium">
             <Clock className="w-3 h-3" />
             {briefing.duration}
@@ -62,11 +62,11 @@ export function BriefingCard({ briefing, index, isVisible }: BriefingCardProps) 
 
       {/* Card Content */}
       <div className="p-4">
-        <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors line-clamp-2 mb-2">
+        <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors line-clamp-2 mb-2 text-sm sm:text-base">
           {briefing.title}
         </h3>
         
-        <p className="text-sm text-muted-foreground line-clamp-2 mb-3">
+        <p className="text-xs sm:text-sm text-muted-foreground line-clamp-2 mb-3">
           {briefing.description}
         </p>
         
