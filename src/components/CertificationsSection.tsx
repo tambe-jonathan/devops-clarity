@@ -11,42 +11,30 @@ const certifications = [
     name: "AWS Solutions Architect – Associate",
     issuer: "Amazon Web Services",
     description: "Designing resilient, high-performing architectures on AWS",
-    impact: "Applied in production environments managing cloud-native workloads",
     logo: awsSapLogo,
     accentColor: "from-orange-500 to-amber-500",
     glowColor: "shadow-orange-500/20",
     borderHover: "hover:border-orange-400/50",
-    issued: "March 2023",
-    expires: "March 2026",
-    credentialId: "AWS-SAA-2023",
     verifyUrl: "https://www.credly.com/badges/verify",
   },
   {
     name: "AWS DevOps Engineer – Professional",
     issuer: "Amazon Web Services",
     description: "CI/CD, monitoring, logging, and security automation on AWS",
-    impact: "Implemented production-grade pipelines and infrastructure automation",
     logo: awsDevopsLogo,
     accentColor: "from-orange-600 to-yellow-500",
     glowColor: "shadow-orange-600/20",
     borderHover: "hover:border-orange-500/50",
-    issued: "June 2023",
-    expires: "June 2026",
-    credentialId: "AWS-DOP-2023",
     verifyUrl: "https://www.credly.com/badges/verify",
   },
   {
     name: "Microsoft Azure Administrator",
     issuer: "Microsoft",
     description: "Managing enterprise cloud infrastructure and identity on Azure",
-    impact: "Used to architect and operate production AKS clusters",
     logo: azureAdminLogo,
     accentColor: "from-blue-500 to-cyan-500",
     glowColor: "shadow-blue-500/20",
     borderHover: "hover:border-blue-400/50",
-    issued: "January 2023",
-    expires: "January 2026",
-    credentialId: "AZ-104",
     verifyUrl: "https://learn.microsoft.com/en-us/users/",
   },
 ];
@@ -89,30 +77,27 @@ export function CertificationsSection() {
               {/* Gradient overlay on hover */}
               <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${cert.accentColor} opacity-0 group-hover:opacity-[0.03] transition-opacity duration-500`} />
               
-              {/* Logo Container with hover animation */}
+              {/* Logo */}
               <div className="relative flex justify-center mb-5">
                 <div className="relative">
-                  {/* Glow effect behind logo */}
                   <div className={`absolute inset-0 bg-gradient-to-br ${cert.accentColor} rounded-full blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-500 scale-150`} />
-                  
-                  {/* Logo */}
                   <img 
                     src={cert.logo} 
                     alt={`${cert.name} certification badge`}
-                    className="relative w-24 h-24 object-contain transition-all duration-500 group-hover:scale-110 group-hover:drop-shadow-lg"
+                    loading="lazy"
+                    className="relative w-20 h-20 sm:w-24 sm:h-24 object-contain transition-all duration-500 group-hover:scale-110 group-hover:drop-shadow-lg"
                   />
                 </div>
               </div>
 
               {/* Content */}
               <div className="relative text-center">
-                <h3 className="font-semibold text-foreground text-base leading-tight mb-1 group-hover:text-foreground transition-colors">
+                <h3 className="font-semibold text-foreground text-sm sm:text-base leading-tight mb-1">
                   {cert.name}
                 </h3>
                 <p className="text-xs text-muted-foreground font-medium mb-3">{cert.issuer}</p>
                 
-                {/* Description - appears on hover */}
-                <p className="text-sm text-muted-foreground leading-relaxed mb-4 opacity-70 group-hover:opacity-100 transition-opacity duration-300">
+                <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed mb-4 opacity-70 group-hover:opacity-100 transition-opacity duration-300">
                   {cert.description}
                 </p>
 
@@ -132,7 +117,7 @@ export function CertificationsSection() {
                 </a>
               </div>
 
-              {/* Floating particles effect on hover */}
+              {/* Floating particles */}
               <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-500 delay-100">
                 <div className={`w-2 h-2 rounded-full bg-gradient-to-br ${cert.accentColor} animate-pulse`} />
               </div>

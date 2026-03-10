@@ -1,4 +1,4 @@
-import { Video, ArrowRight } from "lucide-react";
+import { Video, ArrowRight, Youtube } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { briefings } from "@/data/briefings";
 import { BriefingCard } from "./BriefingCard";
@@ -33,8 +33,8 @@ export function BriefingVaultSection() {
           </p>
         </div>
 
-        {/* Briefings Grid - YouTube-inspired */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Briefings Grid - YouTube-inspired responsive */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {briefings.map((briefing, index) => (
             <BriefingCard
               key={briefing.id}
@@ -45,29 +45,29 @@ export function BriefingVaultSection() {
           ))}
         </div>
 
-        {/* Bottom CTA */}
+        {/* YouTube CTA */}
         <div 
-          className={`mt-16 p-8 rounded-2xl bg-gradient-to-r from-primary/5 via-primary/10 to-accent/5 border border-primary/10 transition-all duration-700 ease-out ${
+          className={`mt-12 text-center transition-all duration-700 ease-out ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
-          style={{ transitionDelay: '600ms' }}
+          style={{ transitionDelay: '500ms' }}
         >
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
-            <div>
-              <h3 className="text-xl font-bold text-foreground mb-2">
-                Facing a similar architectural challenge?
-              </h3>
-              <p className="text-muted-foreground">
-                Let's discuss your infrastructure strategy and find the right solution.
-              </p>
-            </div>
-            <Button variant="hero" size="lg" asChild className="shrink-0">
-              <a href="#contact" className="gap-2">
-                Book a Strategy Session
-                <ArrowRight className="w-4 h-4" />
-              </a>
-            </Button>
-          </div>
+          <Button 
+            variant="heroOutline" 
+            size="lg" 
+            asChild 
+            className="gap-2 group"
+          >
+            <a 
+              href="https://youtube.com/@yourchannel" 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              <Youtube className="w-5 h-5 text-red-500 group-hover:scale-110 transition-transform duration-300" />
+              Visit My YouTube Channel
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+            </a>
+          </Button>
         </div>
       </div>
     </section>
