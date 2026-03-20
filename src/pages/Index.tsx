@@ -31,9 +31,8 @@ const Index = () => {
         <ScrollSkeleton lines={3}>
           <CertificationsSection />
         </ScrollSkeleton>
-        <ScrollSkeleton lines={3}>
-          <WorkflowSection />
-        </ScrollSkeleton>
+
+
         <ScrollSkeleton lines={4}>
           <ContactSection />
         </ScrollSkeleton>
