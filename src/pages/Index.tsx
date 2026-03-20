@@ -5,7 +5,7 @@ import { SkillsSection } from "@/components/SkillsSection";
 import { ProjectsSection } from "@/components/ProjectsSection";
 import { BriefingVaultSection } from "@/components/BriefingVaultSection";
 import { CertificationsSection } from "@/components/CertificationsSection";
-import { WorkflowSection } from "@/components/WorkflowSection";
+
 import { ContactSection } from "@/components/ContactSection";
 import { Footer } from "@/components/Footer";
 import { ScrollSkeleton } from "@/components/ScrollSkeleton";
@@ -31,9 +31,8 @@ const Index = () => {
         <ScrollSkeleton lines={3}>
           <CertificationsSection />
         </ScrollSkeleton>
-        <ScrollSkeleton lines={3}>
-          <WorkflowSection />
-        </ScrollSkeleton>
+
+
         <ScrollSkeleton lines={4}>
           <ContactSection />
         </ScrollSkeleton>
