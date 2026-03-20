@@ -17,21 +17,39 @@ export function useScrollSpy(sectionIds: string[], offset = 80) {
     mutationRef.current?.disconnect();
     trackedRef.current.clear();
 
+    const visibilityMap = new Map<string, number>();
+
     // Create IntersectionObserver
     const io = new IntersectionObserver(
       (entries) => {
-        // Find the most visible section
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        entries.forEach((entry) => {
+          visibilityMap.set(
+            entry.target.id,
+            entry.isIntersecting ? entry.intersectionRatio : 0
+          );
+        });
 
-        if (visible.length > 0) {
-          setActiveId(visible[0].target.id);
-        }
+        // Pick the visible section closest to the top of the viewport
+        let bestId = "";
+        let bestTop = Infinity;
+        visibilityMap.forEach((ratio, id) => {
+          if (ratio > 0) {
+            const el = document.getElementById(id);
+            if (el) {
+              const dist = Math.abs(el.getBoundingClientRect().top - offset);
+              if (dist < bestTop) {
+                bestTop = dist;
+                bestId = id;
+              }
+            }
+          }
+        });
+
+        if (bestId) setActiveId(bestId);
       },
       {
-        rootMargin: `-${offset}px 0px -40% 0px`,
-        threshold: [0, 0.1, 0.25, 0.5],
+        rootMargin: `-${offset}px 0px -20% 0px`,
+        threshold: [0, 0.05, 0.1, 0.2, 0.3, 0.5],
       }
     );
     observerRef.current = io;
