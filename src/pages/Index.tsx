@@ -5,7 +5,7 @@ import { SkillsSection } from "@/components/SkillsSection";
 import { ProjectsSection } from "@/components/ProjectsSection";
 import { BriefingVaultSection } from "@/components/BriefingVaultSection";
 import { CertificationsSection } from "@/components/CertificationsSection";
-import { WorkflowSection } from "@/components/WorkflowSection";
+
 import { ContactSection } from "@/components/ContactSection";
 import { Footer } from "@/components/Footer";
 import { ScrollSkeleton } from "@/components/ScrollSkeleton";
