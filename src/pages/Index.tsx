@@ -1,7 +1,7 @@
 import { Navigation } from "@/components/Navigation";
 import { HeroSection } from "@/components/HeroSection";
 import { AboutSection } from "@/components/AboutSection";
-import { SkillsSection } from "@/components/SkillsSection";
+import { TechStackSection } from "@/components/TechStackSection";
 import { ProjectsSection } from "@/components/ProjectsSection";
 import { BriefingVaultSection } from "@/components/BriefingVaultSection";
 import { CertificationsSection } from "@/components/CertificationsSection";
@@ -15,22 +15,22 @@ const Index = () => {
       <Navigation />
       <main>
         <HeroSection />
-        <ScrollSkeleton lines={4}>
+        <ScrollSkeleton>
           <AboutSection />
         </ScrollSkeleton>
-        <ScrollSkeleton lines={5}>
+        <ScrollSkeleton>
           <ProjectsSection />
         </ScrollSkeleton>
-        <ScrollSkeleton lines={4}>
+        <ScrollSkeleton>
           <BriefingVaultSection />
         </ScrollSkeleton>
-        <ScrollSkeleton lines={4}>
-          <SkillsSection />
+        <ScrollSkeleton>
+          <TechStackSection />
         </ScrollSkeleton>
-        <ScrollSkeleton lines={3}>
+        <ScrollSkeleton>
           <CertificationsSection />
         </ScrollSkeleton>
-        <ScrollSkeleton lines={4}>
+        <ScrollSkeleton>
           <ContactSection />
         </ScrollSkeleton>
       </main>
